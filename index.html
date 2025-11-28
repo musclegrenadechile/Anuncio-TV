@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viernes - Ofertas del Día - La Barra Protein</title>
+    <title>Carta & Ofertas del Día - La Barra Protein</title>
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -107,16 +107,12 @@
             animation: gradient-shift 14s ease infinite alternate;
         }
         #slide-2 {
-            background: linear-gradient(135deg, #101322, #4A2C82, #101322);
-            animation: gradient-shift 12s ease infinite alternate-reverse;
+            background: linear-gradient(135deg, #101322, #264653, #101322);
+            animation: gradient-shift 13s ease infinite alternate-reverse;
         }
         #slide-3 {
-            background: linear-gradient(135deg, #101322, #264653, #101322);
-            animation: gradient-shift 13s ease infinite;
-        }
-        #slide-4 {
-            background: radial-gradient(circle at center, #FF8C00, #101322 60%, #000000);
-            animation: gradient-shift 11s ease infinite alternate;
+            background: linear-gradient(135deg, #101322, #4A2C82, #101322);
+            animation: gradient-shift 12s ease infinite;
         }
 
         .title {
@@ -126,10 +122,10 @@
         }
 
         .glass-card {
-            background: rgba(10,10,18,0.7);
+            background: rgba(10,10,18,0.75);
             border-radius: 1.8rem;
-            padding: 1.8rem 2.4rem;
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.6rem 2.2rem;
+            border: 1px solid rgba(255,255,255,0.12);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 18px 40px rgba(0,0,0,0.55);
@@ -138,14 +134,14 @@
         .tag-pill {
             border-radius: 9999px;
             padding: 0.4rem 1.2rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: 0.05em;
         }
 
         .price-pill {
             border-radius: 9999px;
-            padding: 0.6rem 1.8rem;
+            padding: 0.5rem 1.6rem;
             border: 2px solid rgba(255,255,255,0.7);
             display: inline-flex;
             align-items: baseline;
@@ -157,182 +153,190 @@
 <body class="tv-screen">
     <div class="slides-container">
 
-        <!-- SLIDE 1: VIERNES - OFERTAS DEL DÍA -->
+        <!-- SLIDE 1: OFERTAS DEL DÍA -->
         <div id="slide-1" class="slide active">
-            <div class="text-center mb-10">
-                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.6em] mb-2">
-                    VIERNES
+            <div class="mb-4 text-center">
+                <p class="text-3xl lg:text-4xl font-bold text-sun-yellow animate-pulse-soft">
+                    ⭐ FRASE DEL DÍA: HOY SE ENTRENA AL FALLO ⭐
                 </p>
-                <h1 class="title text-8xl lg:text-[9rem] text-cream-white animate-float">
+            </div>
+
+            <div class="text-center mb-8">
+                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.4em] mb-2">
+                    OFERTAS ESPECIALES
+                </p>
+                <h1 class="title text-7xl lg:text-[8.5rem] text-cream-white animate-float">
                     OFERTAS DEL DÍA
                 </h1>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full">
-                <!-- Oferta 1: Milkshake Proteico -->
+
+                <!-- Oferta 1: NAD+ -->
                 <div class="glass-card animate-pulse-soft">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="tag-pill bg-vibrant-pink/90 text-cream-white">
-                            TOP VENTA
-                        </span>
-                        <span class="text-sm text-cream-white/80 uppercase">Milkshake Proteico</span>
-                    </div>
-                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
-                        MILKSHAKE PROTEICO
-                    </p>
-                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
-                        25g de proteína real · Textura cremosa · Ideal post entreno.
-                    </p>
-                    <div class="price-pill bg-black/40 border-vibrant-pink/70">
-                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">HOY</span>
-                        <span class="text-4xl lg:text-5xl text-sun-yellow font-extrabold">$3.500</span>
-                    </div>
-                </div>
-
-                <!-- Oferta 2: Protein Coffee -->
-                <div class="glass-card">
-                    <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-3">
                         <span class="tag-pill bg-soft-blue/90 text-deep-night">
-                            ENERGÍA+
+                            OMEGA CLÍNICA
                         </span>
-                        <span class="text-sm text-cream-white/80 uppercase">Café con proteína</span>
+                        <span class="text-sm text-cream-white/80 uppercase">NAD+ 100 servicios</span>
                     </div>
-                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
-                        PROTEIN COFFEE
+                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
+                        NAD+ OMEGA CLÍNICA · 100 SERVICIOS
                     </p>
-                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
-                        Café + 1 scoop de proteína · Perfecto para partir el día con power.
+                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
+                        Energía celular, recuperación y bienestar general.
                     </p>
-                    <div class="price-pill bg-black/40 border-soft-blue/80">
-                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">OFERTA</span>
-                        <span class="text-4xl lg:text-5xl text-mint font-extrabold">$3.990</span>
+                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
+                        Antes: $34.990.-
+                    </p>
+                    <div class="price-pill bg-black/50 border-mint/80">
+                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
+                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$25.000.-</span>
                     </div>
                 </div>
 
-                <!-- Oferta 3: Army Labs Pack -->
+                <!-- Oferta 2: Army Labs + Creatina -->
                 <div class="glass-card">
-                    <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-3">
                         <span class="tag-pill bg-mint/90 text-deep-night">
-                            PACK ESPECIAL
+                            PACK FUERZA
                         </span>
                         <span class="text-sm text-cream-white/80 uppercase">Army Labs</span>
                     </div>
-                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
-                        ARMY LABS PROTEÍNA 5 LB + CREATINA
+                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
+                        PROTEÍNA ARMY LABS 5 LB + CREATINA
                     </p>
-                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
-                        Combo ideal para fuerza y masa muscular. Llévatelo hoy a precio especial.
+                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
+                        Pack ideal para volumen, fuerza y rendimiento.
                     </p>
-                    <div class="price-pill bg-black/40 border-mint/80">
-                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">SÓLO</span>
-                        <span class="text-4xl lg:text-5xl text-sun-yellow font-extrabold">$54.990.-</span>
+                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
+                        Antes: $79.990.-
+                    </p>
+                    <div class="price-pill bg-black/50 border-soft-lilac/80">
+                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
+                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$54.990.-</span>
                     </div>
                 </div>
+
+                <!-- Oferta 3: Otro suplemento (ejemplo) -->
+                <div class="glass-card">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="tag-pill bg-vibrant-pink/90 text-cream-white">
+                            PRE-ENTRENO
+                        </span>
+                        <span class="text-sm text-cream-white/80 uppercase">Killer Pump</span>
+                    </div>
+                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
+                        KILLER PUMP · PRE-ENTRENO
+                    </p>
+                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
+                        Energía, enfoque y congestión máxima para tu sesión.
+                    </p>
+                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
+                        Antes: $29.990.-
+                    </p>
+                    <div class="price-pill bg-black/50 border-vibrant-pink/90">
+                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
+                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$21.990.-</span>
+                    </div>
+                </div>
+
             </div>
 
-            <p class="mt-10 text-2xl lg:text-3xl text-cream-white/90 font-medium text-center">
-                PIDE ESTAS OFERTAS DE <span class="text-sun-yellow font-bold">VIERNES</span> DIRECTO EN EL MESÓN 💬
+            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/90 font-medium text-center">
+                PIDE ESTAS OFERTAS DIRECTO EN EL MESÓN 💬
             </p>
         </div>
 
-        <!-- SLIDE 2: COMBO PRE ENTRENO -->
+        <!-- SLIDE 2: CARTA CAFÉS CALIENTES -->
         <div id="slide-2" class="slide">
-            <div class="text-center mb-10">
+            <div class="text-center mb-8">
                 <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
-                    PARA EMPEZAR CON TODO
+                    CARTA · CAFÉS CALIENTES
                 </p>
-                <h2 class="title text-8xl lg:text-[9rem] text-cream-white">
-                    COMBO PRE-ENTRENO
+                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
+                    CAFETERÍA LA BARRA
                 </h2>
             </div>
 
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-                <div class="glass-card max-w-xl">
-                    <p class="text-3xl lg:text-4xl font-extrabold mb-4 text-sun-yellow">
-                        INCLUYE:
-                    </p>
-                    <ul class="text-2xl lg:text-3xl space-y-2 text-cream-white/95">
-                        <li>✔ PROTEIN COFFEE (café + proteína)</li>
-                        <li>✔ EXTRA SHOT DE CAFEÍNA</li>
-                        <li>✔ HIELO / CALIENTE (a elección)</li>
-                    </ul>
-                    <p class="mt-6 text-xl lg:text-2xl text-cream-white/80">
-                        Ideal para antes de entrenar, estudiar o trabajar con foco total.
-                    </p>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">ESPRESSO</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$2.000</span>
                 </div>
-
-                <div class="flex flex-col items-center gap-6">
-                    <div class="price-pill bg-black/60 border-sun-yellow">
-                        <span class="text-3xl lg:text-4xl text-cream-white font-semibold">VIERNES</span>
-                        <span class="text-6xl lg:text-7xl text-sun-yellow font-extrabold">$4.200</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-md">
-                        PÍDELO COMO: <span class="text-sun-yellow">“COMBO PRE-ENTRENO”</span>
-                    </p>
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">AMERICANO</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$2.500</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 3: COMBO DULCE FIT -->
-        <div id="slide-3" class="slide">
-            <div class="text-center mb-10">
-                <p class="title text-4xl lg:text-5xl text-mint tracking-[0.3em] mb-2">
-                    PARA LOS AMANTES DEL DULCE
-                </p>
-                <h2 class="title text-8xl lg:text-[9rem] text-cream-white">
-                    COMBO DULCE FIT
-                </h2>
-            </div>
-
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-                <div class="glass-card max-w-xl">
-                    <p class="text-3xl lg:text-4xl font-extrabold mb-4 text-vibrant-pink">
-                        INCLUYE:
-                    </p>
-                    <ul class="text-2xl lg:text-3xl space-y-2 text-cream-white/95">
-                        <li>✔ SNACK DULCE FIT (brownie / galleta / barra)</li>
-                        <li>✔ CAFÉ LATTE O CAPPUCCINO</li>
-                        <li>✔ OPCIÓN LECHES VEGETALES</li>
-                    </ul>
-                    <p class="mt-6 text-xl lg:text-2xl text-cream-white/80">
-                        Perfecto para darte un gusto sin salir de tu estilo de vida saludable.
-                    </p>
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">LATTE</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$2.800</span>
                 </div>
-
-                <div class="flex flex-col items-center gap-6">
-                    <div class="price-pill bg-black/60 border-vibrant-pink/90">
-                        <span class="text-3xl lg:text-4xl text-cream-white font-semibold">OFERTA VIERNES</span>
-                        <span class="text-6xl lg:text-7xl text-sun-yellow font-extrabold">$4.500</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-md">
-                        PÍDELO COMO: <span class="text-vibrant-pink">“COMBO DULCE FIT”</span>
-                    </p>
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">CAPUCHINO</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$2.900</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">MOCHA</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.200</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-2 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">CAFÉ DOBLE</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.000</span>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 4: MARCA + LLAMADO -->
-        <div id="slide-4" class="slide">
-            <h2 class="title text-7xl lg:text-8xl text-sun-yellow mb-6 text-center">
-                LA BARRA PROTEIN
-            </h2>
-
-            <div class="mt-4 bg-bar-orange/90 p-10 rounded-3xl shadow-2xl w-[520px] h-[250px] mx-auto flex flex-col items-center justify-center border-4 border-cream-white">
-                <p class="title text-7xl lg:text-8xl font-black text-deep-night text-center leading-none">
-                    LA BARRA
-                </p>
-                <p class="text-3xl font-bold text-deep-night text-center mt-2">
-                    BY MUSCLE GRENADE
-                </p>
-            </div>
-
-            <p class="text-3xl lg:text-4xl font-semibold text-cream-white mt-10 text-center">
-                [DIRECCIÓN · MONTEMAR / REÑACA · INSTAGRAM @LABARRAPROTEIN]
+            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center">
+                OPCIÓN LECHES VEGETALES · ENDULZANTE · CANELA · CHOCOLATE
             </p>
+        </div>
 
-            <p class="mt-6 text-2xl lg:text-3xl font-medium text-cream-white/90 text-center max-w-3xl">
-                VIERNES DE OFERTAS EN LA BARRA PROTEIN.  
-                MILKSHAKES, CAFÉS, COMBOS FIT Y EL PACK ARMY LABS A $54.990.- 💪
+        <!-- SLIDE 3: CARTA FRAPUCHINOS / SHAKES -->
+        <div id="slide-3" class="slide">
+            <div class="text-center mb-8">
+                <p class="title text-4xl lg:text-5xl text-mint tracking-[0.3em] mb-2">
+                    SHAKES & FRAPUCHINOS
+                </p>
+                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
+                    CARTA PROTEICA
+                </h2>
+            </div>
+
+            <div class="glass-card max-w-4xl w-full">
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        FRAPUCHINO PROTEIN · SABOR VOLCÁN DE CHOCOLATE
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.490</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        MILKSHAKE PROTEICO CLÁSICO
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.500</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        PROTEIN COFFEE (CAFÉ + PROTEÍNA)
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        SMOOTHIE ENERGÍA · FRUTILLA / PLÁTANO + PROTEÍNA
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        SHOT DE PROTEÍNA EXTRA (AÑADE A TU BEBIDA)
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$1.000</span>
+                </div>
+            </div>
+
+            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-3xl">
+                IDEALES PARA ANTES O DESPUÉS DEL GYM · PÍDELOS EN EL MESÓN 💪
             </p>
         </div>
     </div>
@@ -357,6 +361,3 @@
     </script>
 </body>
 </html>
-
-
-
