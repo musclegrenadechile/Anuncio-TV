@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milkshake de Proteína - Anuncio Dinámico para TV</title>
-    <!-- Carga de Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts para tipografías más atractivas --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Ofertas del Día - La Barra Protein</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Configuración personalizada de Tailwind --><script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'vibrant-pink': '#FF4081', // Rosa vibrante
-                        'sun-yellow': '#FFD700', // Dorado sol
-                        'ocean-blue': '#4FC3F7', // Azul cielo
-                        'deep-night': '#2C3E50', // Azul muy oscuro, casi negro
-                        'leaf-green': '#8BC34A', // Verde fresco
-                        'smoothie-purple': '#AB47BC', // Morado de batido
-                        'cream-white': '#F5F5DC', // Blanco cremoso
-                        'bar-orange': '#FF8C00', // Naranja del logo
+                        'vibrant-pink': '#FF4F81',
+                        'sun-yellow': '#FFD54F',
+                        'deep-night': '#1C1F2A',
+                        'cream-white': '#FFF8E1',
+                        'bar-orange': '#FF8C00',
+                        'mint': '#A5F3CF',
+                        'soft-lilac': '#D7B8FF',
+                        'soft-blue': '#A5D8FF',
+                        'soft-bg': '#101322',
+                        'card-dark': '#1E2435',
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
@@ -29,17 +35,17 @@
                     },
                     animation: {
                         'float': 'float 4s ease-in-out infinite',
-                        'pulse-strong': 'pulse-strong 2s infinite ease-in-out',
-                        'gradient-shift': 'gradient-shift 10s ease infinite alternate',
+                        'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+                        'gradient-shift': 'gradient-shift 12s ease infinite alternate',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
                         },
-                        'pulse-strong': {
-                            '0%, 100%': { transform: 'scale(1)', textShadow: '0 0 5px rgba(255,255,255,0.7)' },
-                            '50%': { transform: 'scale(1.05)', textShadow: '0 0 15px rgba(255,255,255,1)' },
+                        'pulse-soft': {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.03)' },
                         },
                         'gradient-shift': {
                             '0%': { backgroundPosition: '0% 50%' },
@@ -50,13 +56,15 @@
             }
         }
     </script>
+
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            background-color: #1a202c; /* Fondo oscuro principal */
+            background-color: #101322;
             color: white;
         }
+
         .tv-screen {
             min-height: 100vh;
             display: flex;
@@ -65,29 +73,28 @@
             overflow: hidden;
             position: relative;
         }
-        
-        /* Contenedor de slides */
+
         .slides-container {
             position: relative;
             width: 100%;
             height: 100vh;
         }
 
-        /* Estilos base del slide */
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out; /* Transición más larga */
-            background-size: 400% 400%; /* Para el degradado animado */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            padding: 2.5rem;
+            box-sizing: border-box;
+            background-size: 400% 400%;
         }
 
         .slide.active {
@@ -95,172 +102,248 @@
             z-index: 10;
         }
 
-        /* Fondos específicos para cada slide */
         #slide-1 {
-            background: linear-gradient(45deg, #FF4081, #FFC107, #FF4081); /* Rosa, Amarillo */
-            animation: gradient-shift 10s ease infinite alternate;
+            background: radial-gradient(circle at top, #FFAEBC, #101322 60%, #05060A);
+            animation: gradient-shift 14s ease infinite alternate;
         }
         #slide-2 {
-            background: linear-gradient(135deg, #4FC3F7, #AB47BC, #4FC3F7); /* Azul, Morado */
+            background: linear-gradient(135deg, #101322, #4A2C82, #101322);
             animation: gradient-shift 12s ease infinite alternate-reverse;
         }
         #slide-3 {
-            background: linear-gradient(90deg, #8BC34A, #2C3E50, #8BC34A); /* Verde, Azul Oscuro */
-            animation: gradient-shift 11s ease infinite;
+            background: linear-gradient(135deg, #101322, #264653, #101322);
+            animation: gradient-shift 13s ease infinite;
         }
         #slide-4 {
-            background: linear-gradient(225deg, #FFC107, #FF4081, #FFC107); /* Amarillo, Rosa */
-            animation: gradient-shift 9s ease infinite alternate;
+            background: radial-gradient(circle at center, #FF8C00, #101322 60%, #000000);
+            animation: gradient-shift 11s ease infinite alternate;
         }
 
-        /* Estilos de texto */
         .title {
             font-family: 'Bebas Neue', cursive;
-            letter-spacing: 0.1em;
-            line-height: 0.9;
-        }
-        .price-bubble {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 3px solid white;
-            padding: 1.5rem 3rem;
-            border-radius: 9999px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            display: inline-flex;
-            align-items: baseline;
-        }
-        .topping-item {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-radius: 1.5rem;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .topping-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: rgba(255,255,255,0.25);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
         }
 
-        .product-icon {
-            font-size: 8rem; /* Iconos grandes */
-            line-height: 1;
-            text-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        .glass-card {
+            background: rgba(10,10,18,0.7);
+            border-radius: 1.8rem;
+            padding: 1.8rem 2.4rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+        }
+
+        .tag-pill {
+            border-radius: 9999px;
+            padding: 0.4rem 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .price-pill {
+            border-radius: 9999px;
+            padding: 0.6rem 1.8rem;
+            border: 2px solid rgba(255,255,255,0.7);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.4rem;
         }
     </style>
 </head>
-<body class="tv-screen">
 
+<body class="tv-screen">
     <div class="slides-container">
 
-        <!-- SLIDE 1: Oferta Principal de Proteína y Precio ($3.500) --><div id="slide-1" class="slide active">
-            <h1 class="title text-8xl lg:text-[10rem] font-bold text-cream-white animate-float">
-                ¡MILKSHAKE <br> PROTEICO!
-            </h1>
-
-            <div class="my-12">
-                <p class="text-4xl lg:text-5xl font-semibold text-white mb-4">
-                    CON LA ENERGÍA DE
+        <!-- SLIDE 1: OFERTAS DEL DÍA -->
+        <div id="slide-1" class="slide active">
+            <div class="text-center mb-10">
+                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.4em] mb-3">
+                    HOY EN LA BARRA
                 </p>
-                <p class="text-[10rem] lg:text-[14rem] font-extrabold leading-none text-sun-yellow animate-pulse-strong">
-                    25g
-                </p>
-                <p class="text-5xl lg:text-6xl font-bold text-white -mt-8">
-                    DE PROTEÍNA
-                </p>
+                <h1 class="title text-8xl lg:text-[9rem] text-cream-white animate-float">
+                    OFERTAS DEL DÍA
+                </h1>
             </div>
-            
-            <div class="price-bubble">
-                <span class="text-4xl lg:text-5xl font-bold text-white mr-4">SÓLO</span>
-                <span class="text-7xl lg:text-8xl font-extrabold text-sun-yellow">$3.500</span>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full">
+                <!-- Oferta 1 -->
+                <div class="glass-card animate-pulse-soft">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="tag-pill bg-vibrant-pink/90 text-cream-white">
+                            TOP VENTA
+                        </span>
+                        <span class="text-sm text-cream-white/80 uppercase">Milkshake Proteico</span>
+                    </div>
+                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
+                        MILKSHAKE PROTEICO
+                    </p>
+                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
+                        25g de proteína real · Textura cremosa · Ideal post entreno.
+                    </p>
+                    <div class="price-pill bg-black/40 border-vibrant-pink/70">
+                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">HOY</span>
+                        <span class="text-4xl lg:text-5xl text-sun-yellow font-extrabold">$3.500</span>
+                    </div>
+                </div>
+
+                <!-- Oferta 2 -->
+                <div class="glass-card">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="tag-pill bg-soft-blue/90 text-deep-night">
+                            ENERGÍA+
+                        </span>
+                        <span class="text-sm text-cream-white/80 uppercase">Café con proteína</span>
+                    </div>
+                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
+                        PROTEIN COFFEE
+                    </p>
+                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
+                        Café + 1 scoop de proteína · Perfecto para partir el día con power.
+                    </p>
+                    <div class="price-pill bg-black/40 border-soft-blue/80">
+                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">OFERTA</span>
+                        <span class="text-4xl lg:text-5xl text-mint font-extrabold">$3.990</span>
+                    </div>
+                </div>
+
+                <!-- Oferta 3 -->
+                <div class="glass-card">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="tag-pill bg-mint/90 text-deep-night">
+                            COMBO
+                        </span>
+                        <span class="text-sm text-cream-white/80 uppercase">Dulce + Café</span>
+                    </div>
+                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
+                        COMBO DULCE FIT
+                    </p>
+                    <p class="text-xl lg:text-2xl text-cream-white/90 mb-4">
+                        Snack dulce fit + café a elección (americano o latte).
+                    </p>
+                    <div class="price-pill bg-black/40 border-mint/80">
+                        <span class="text-xl lg:text-2xl text-cream-white font-semibold">POR SOLO</span>
+                        <span class="text-4xl lg:text-5xl text-sun-yellow font-extrabold">$4.500</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-10 text-2xl lg:text-3xl text-cream-white/90 font-medium text-center">
+                PIDE CUALQUIERA DE ESTAS OFERTAS DIRECTO EN EL MESÓN 💬
+            </p>
+        </div>
+
+        <!-- SLIDE 2: COMBO PRE ENTRENO -->
+        <div id="slide-2" class="slide">
+            <div class="text-center mb-10">
+                <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
+                    PARA EMPEZAR CON TODO
+                </p>
+                <h2 class="title text-8xl lg:text-[9rem] text-cream-white">
+                    COMBO PRE-ENTRENO
+                </h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-6xl w-full">
+                <div class="glass-card max-w-xl">
+                    <p class="text-3xl lg:text-4xl font-extrabold mb-4 text-sun-yellow">
+                        INCLUYE:
+                    </p>
+                    <ul class="text-2xl lg:text-3xl space-y-2 text-cream-white/95">
+                        <li>✔ PROTEIN COFFEE (café + proteína)</li>
+                        <li>✔ EXTRA SHOT DE CAFEÍNA</li>
+                        <li>✔ HIELO / CALIENTE (a elección)</li>
+                    </ul>
+                    <p class="mt-6 text-xl lg:text-2xl text-cream-white/80">
+                        Ideal para antes de entrenar, estudiar o trabajar con foco total.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center gap-6">
+                    <div class="price-pill bg-black/60 border-sun-yellow">
+                        <span class="text-3xl lg:text-4xl text-cream-white font-semibold">HOY</span>
+                        <span class="text-6xl lg:text-7xl text-sun-yellow font-extrabold">$4.200</span>
+                    </div>
+                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-md">
+                        PÍDELO COMO: <span class="text-sun-yellow">“COMBO PRE-ENTRENO”</span>
+                    </p>
+                </div>
             </div>
         </div>
 
-        <!-- SLIDE 2: Toppings y Llamada a la Personalización --><div id="slide-2" class="slide">
-            <h2 class="title text-8xl lg:text-9xl font-bold text-cream-white mb-16">
-                ¡PERSONALÍZALO!
-            </h2>
+        <!-- SLIDE 3: COMBO DULCE FIT -->
+        <div id="slide-3" class="slide">
+            <div class="text-center mb-10">
+                <p class="title text-4xl lg:text-5xl text-mint tracking-[0.3em] mb-2">
+                    PARA LOS AMANTES DEL DULCE
+                </p>
+                <h2 class="title text-8xl lg:text-[9rem] text-cream-white">
+                    COMBO DULCE FIT
+                </h2>
+            </div>
 
-            <p class="text-4xl lg:text-5xl font-semibold text-white mb-10">
-                Añade tu Topping por <span class="font-black text-vibrant-pink">$1.000</span>
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-4xl font-semibold text-white">
-                <div class="topping-item flex items-center justify-center space-x-4">
-                    <span class="text-6xl">🍓</span> <span>Frutilla</span>
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-6xl w-full">
+                <div class="glass-card max-w-xl">
+                    <p class="text-3xl lg:text-4xl font-extrabold mb-4 text-vibrant-pink">
+                        INCLUYE:
+                    </p>
+                    <ul class="text-2xl lg:text-3xl space-y-2 text-cream-white/95">
+                        <li>✔ SNACK DULCE FIT (brownie / galleta / barra)</li>
+                        <li>✔ CAFÉ LATTE O CAPPUCCINO</li>
+                        <li>✔ OPCIÓN LECHES VEGETALES</li>
+                    </ul>
+                    <p class="mt-6 text-xl lg:text-2xl text-cream-white/80">
+                        Perfecto para darte un gusto sin salir de tu estilo de vida saludable.
+                    </p>
                 </div>
-                <div class="topping-item flex items-center justify-center space-x-4">
-                    <span class="text-6xl">🥜</span> <span>Mantequilla de Maní</span>
-                </div>
-                <div class="topping-item flex items-center justify-center space-x-4">
-                    <span class="text-6xl">🫐</span> <span>Arándanos</span>
+
+                <div class="flex flex-col items-center gap-6">
+                    <div class="price-pill bg-black/60 border-vibrant-pink/90">
+                        <span class="text-3xl lg:text-4xl text-cream-white font-semibold">OFERTA</span>
+                        <span class="text-6xl lg:text-7xl text-sun-yellow font-extrabold">$4.500</span>
+                    </div>
+                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-md">
+                        PÍDELO COMO: <span class="text-vibrant-pink">“COMBO DULCE FIT”</span>
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 3: Oferta Premium Proteína + Colágeno + NAD+ ($4.990) --><div id="slide-3" class="slide">
-            <h2 class="title text-8xl lg:text-9xl font-bold text-sun-yellow mb-12">
-                ¡SUPERFÓRMULA!
+        <!-- SLIDE 4: MARCA + LLAMADO -->
+        <div id="slide-4" class="slide">
+            <h2 class="title text-7xl lg:text-8xl text-sun-yellow mb-6 text-center">
+                LA BARRA PROTEIN
             </h2>
-            <p class="text-5xl lg:text-6xl font-extrabold text-cream-white mb-10">
-                PROTEÍNA + COLÁGENO + NAD+
-            </p>
-            
-            <div class="flex justify-center items-center space-x-12 my-12">
-                <div class="text-center animate-float">
-                    <span class="product-icon text-cream-white">💪</span>
-                    <p class="text-3xl font-bold text-cream-white">PROTEÍNA</p>
-                </div>
-                <div class="text-center animate-float" style="animation-delay: 0.5s;">
-                    <span class="product-icon text-cream-white">✨</span>
-                    <p class="text-3xl font-bold text-cream-white">COLÁGENO</p>
-                </div>
-                <div class="text-center animate-float" style="animation-delay: 1s;">
-                    <span class="product-icon text-cream-white">⚡</span>
-                    <p class="text-3xl font-bold text-cream-white">NAD+</p>
-                </div>
-            </div>
 
-            <div class="price-bubble bg-ocean-blue border-ocean-blue">
-                <span class="text-4xl lg:text-5xl font-bold text-white mr-4">A SÓLO</span>
-                <span class="text-7xl lg:text-8xl font-extrabold text-cream-white">$4.990</span>
-            </div>
-        </div>
-
-        <!-- SLIDE 4: Llamada a la Acción Final (Ubicación/QR/Marca) --><div id="slide-4" class="slide">
-            <h2 class="title text-8xl lg:text-9xl font-bold text-vibrant-pink mb-16">
-                ¡VISÍTANOS HOY!
-            </h2>
-            <p class="text-5xl lg:text-6xl font-extrabold text-cream-white mb-8">
-                TU FUENTE DE ENERGÍA
-            </p>
-            
-            <!-- Nombre de la marca en lugar del QR/Logo --><div class="mt-16 bg-bar-orange/90 p-10 rounded-2xl shadow-xl w-[500px] h-[250px] mx-auto flex flex-col items-center justify-center border-4 border-cream-white">
-                <p class="title text-8xl font-black text-deep-night text-center leading-none">
+            <div class="mt-4 bg-bar-orange/90 p-10 rounded-3xl shadow-2xl w-[520px] h-[250px] mx-auto flex flex-col items-center justify-center border-4 border-cream-white">
+                <p class="title text-7xl lg:text-8xl font-black text-deep-night text-center leading-none">
                     LA BARRA
                 </p>
                 <p class="text-3xl font-bold text-deep-night text-center mt-2">
                     BY MUSCLE GRENADE
                 </p>
             </div>
-            <p class="text-3xl lg:text-4xl font-semibold text-white mt-10">
-                [TU DIRECCIÓN / WEBSITE / RED SOCIAL]
+
+            <p class="text-3xl lg:text-4xl font-semibold text-cream-white mt-10 text-center">
+                [DIRECCIÓN · MONTEMAR / REÑACA · INSTAGRAM @LABARRAPROTEIN]
+            </p>
+
+            <p class="mt-6 text-2xl lg:text-3xl font-medium text-cream-white/90 text-center max-w-3xl">
+                PIDE TUS OFERTAS DEL DÍA EN EL MESÓN.  
+                MILKSHAKES, CAFÉS Y COMBOS PENSADOS PARA GENTE QUE ENTRENA 💪
             </p>
         </div>
-
     </div>
 
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const intervalTime = 7000; // Alternar cada 7 segundos para más tiempo de visualización
+        const intervalTime = 8000; // 8 segundos por slide
 
         function showSlide(index) {
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
+            slides.forEach(slide => slide.classList.remove('active'));
             slides[index].classList.add('active');
         }
 
@@ -274,3 +357,4 @@
     </script>
 </body>
 </html>
+
