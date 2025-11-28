@@ -3,495 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Barra - Anuncio TV (Diseño Futurista)</title>
-    <!-- Tailwind CSS (CDN confiable) --><script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Oswald (titulares), Rubik (cuerpo) --><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Rubik:wght@500;800&display=swap" rel="stylesheet">
-    
+    <title>Dulce Homero - Menú Dinámico</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de Tailwind para colores Cyber y fuente Inter -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'cyber-black': '#000000',      // Fondo ultra oscuro
-                        'cyber-cyan': '#00FFFF',       // Brillo primario
-                        'cyber-magenta': '#FF00FF',    // Brillo secundario
-                        'cyber-red': '#FF0055',        // Para llamadas de acción
-                        'light-grid': '#333333',       // Color para líneas de rejilla
-                        'sunday-bg-light': '#E0F7FA',  // Fondo claro domingo
-                        'brand-purple': '#9D00FF',
-                    },
                     fontFamily: {
-                        heading: ['Oswald', 'sans-serif'], 
-                        sans: ['Rubik', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
                     },
-                    animation: {
-                        'neon-pulse': 'neon-pulse 1.5s infinite alternate',
-                        'scanline': 'scanline 0.5s linear infinite',
-                        'slide-in-up': 'slide-in-up 0.8s ease-out forwards',
-                        'slide-in-down': 'slide-in-down 0.8s ease-out forwards',
-                        'scale-in': 'scale-in 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        'neon-pulse': {
-                            '0%': { transform: 'scale(1)', textShadow: '0 0 5px #00FFFF' },
-                            '100%': { transform: 'scale(1.02)', textShadow: '0 0 15px #00FFFF, 0 0 8px #FF00FF' },
-                        },
-                        'scanline': {
-                            '0%': { backgroundPosition: '0% 0' },
-                            '100%': { backgroundPosition: '0% 100%' }
-                        },
-                        'slide-in-up': {
-                            '0%': { transform: 'translateY(50px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        'slide-in-down': {
-                            '0%': { transform: 'translateY(-50px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        'scale-in': {
-                            '0%': { transform: 'scale(0.8)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' }
-                        }
+                    colors: {
+                        // Colores de la marca para la línea de fitness/proteínas
+                        'cyber-blue': '#00E5FF',
+                        // Color de la marca para la nueva línea de comida sólida 'Dulce Homero'
+                        'cyber-red': '#FF413A',
+                        'bg-dark': '#0A0A0A',
                     }
                 }
             }
         }
     </script>
-
+    <!-- Estilos específicos para la pantalla -->
     <style>
-        /* Estilos base para asegurar pantalla completa */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            overflow: hidden;
-        }
-
-        .tv-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            /* Asegura que el cuerpo ocupe toda la pantalla */
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 1.0s ease-in-out;
-            pointer-events: none;
-            background-size: cover;
-            background-position: center;
-            color: #E0E0E0;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Sombra base para todo */
-        }
-
-        .slide.active {
-            opacity: 1;
-            z-index: 50;
-            pointer-events: auto;
-        }
-
-        /* Efectos de Brillo Neon */
-        .neon-cyan { text-shadow: 0 0 5px #00FFFF, 0 0 15px #00FFFF; color: #00FFFF; }
-        .neon-magenta { text-shadow: 0 0 5px #FF00FF, 0 0 15px #FF00FF; color: #FF00FF; }
-        .neon-red { text-shadow: 0 0 5px #FF0055, 0 0 15px #FF0055; color: #FF0055; }
-        .neon-box {
-            border: 3px solid #00FFFF;
-            box-shadow: 0 0 10px #00FFFF, inset 0 0 5px #00FFFF;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(2px);
-        }
-
-        /* Estilo de Rejilla (GRID) de Fondo */
-        .bg-grid {
-            background-color: #000000;
-            background-image: linear-gradient(0deg, transparent 95%, #333333 100%), linear-gradient(90deg, transparent 95%, #333333 100%);
-            background-size: 50px 50px;
-            /* animation: scanline 0.5s linear infinite; */
+            overflow: hidden;
         }
         
-        .title {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            line-height: 0.9;
+        /* Ocultar las flechas del scrollbar para una presentación limpia */
+        ::-webkit-scrollbar {
+            display: none;
         }
-        .subtitle {
-             font-family: 'Rubik', sans-serif;
-             font-weight: 800;
+        
+        .slide {
+            /* Transición suave entre slides */
+            transition: opacity 0.8s ease-in-out;
         }
-        .dashed-line {
-            border-bottom: 2px dashed #FF00FF;
-            padding-bottom: 5px;
+
+        /* Estilo de la sombra para el texto principal */
+        .text-shadow-custom {
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px currentColor;
+        }
+        
+        /* Animación simple de brillo para las ofertas */
+        @keyframes pulse-glow-blue {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 229, 255, 0.7); }
+            50% { box-shadow: 0 0 20px rgba(0, 229, 255, 1); }
+        }
+        
+        @keyframes pulse-glow-red {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 65, 58, 0.7); }
+            50% { box-shadow: 0 0 20px rgba(255, 65, 58, 1); }
+        }
+
+        .offer-glow-blue {
+            animation: pulse-glow-blue 3s infinite alternate;
+        }
+
+        .offer-glow-red {
+            animation: pulse-glow-red 3s infinite alternate;
         }
     </style>
 </head>
-<body class="bg-cyber-black">
+<body class="bg-bg-dark text-gray-100 font-sans">
 
-    <div class="tv-container">
-
-        <!-- ========================================= -->
-        <!-- SLIDE INTRODUCTORIO CONSOLIDADO (TODOS LOS DÍAS) -->
-        <!-- ========================================= -->
-        <div id="slide-intro" class="slide bg-grid">
-            <div class="text-center px-12 w-full max-w-6xl">
-                <p id="intro-title" class="text-7xl title neon-cyan mb-4 animate-slide-in-down">
-                    <!-- Título inyectado por JS (ej: ¡Feliz Lunes!) -->
-                </p>
-                <p id="intro-subtitle" class="text-4xl subtitle text-gray-400 mb-10 animate-slide-in-up" style="animation-delay: 0.2s;">
-                    <!-- Subtítulo inyectado por JS (ej: Motivación del Día) -->
-                </p>
-
-                <div id="intro-content" class="p-12 rounded-lg border-2 border-cyber-magenta animate-scale-in" style="animation-delay: 0.4s; background: rgba(0, 0, 0, 0.8);">
-                    <!-- Contenido (Versículo o Frase Motivadora) inyectado por JS -->
-                </div>
-                
-                <p class="text-xl text-gray-600 font-bold mt-12 animate-slide-in-up" style="animation-delay: 0.8s;">
-                    LA BARRA BY MUSCLE GRENADE | [SYSTEM ACTIVE]
-                </p>
-            </div>
-        </div>
-        
-        <!-- ========================================= -->
-        <!-- SLIDE EXCLUSIVO: OFERTA DEL LUNES         -->
-        <!-- ========================================= -->
-        <div id="slide-offer-monday" class="slide bg-grid">
-            <h2 class="text-8xl title neon-cyan mb-16 animate-neon-pulse">
-                [ PROTOCOL: OFFER ]
-            </h2>
-
-            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7);">
-                <p class="text-6xl subtitle text-white mb-4">LUNES DE ENFOQUE</p>
-                <p class="text-7xl title neon-red leading-tight mb-8">FUEL COMBO 25G</p>
-                <p class="text-5xl subtitle text-gray-400 mb-6">+ CAFEÍNA INYECTADA</p>
-                
-                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
-                    <span class="text-4xl text-gray-600 line-through font-bold">$5.300</span>
-                    <span class="text-9xl title neon-cyan leading-none">$4.000</span>
-                </div>
-            </div>
-            <p class="text-3xl subtitle text-gray-500 mt-10">VÁLIDO SOLO HASTA [23:59:59]</p>
-        </div>
-        
-        <!-- ========================================= -->
-        <!-- SLIDE EXCLUSIVO: OFERTA DEL MARTES        -->
-        <!-- ========================================= -->
-        <div id="slide-offer-tuesday" class="slide bg-grid">
-            <h2 class="text-8xl title neon-magenta mb-16 animate-neon-pulse">
-                [ PROTOCOL: OPTIMIZE ]
-            </h2>
-
-            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7); border: 3px solid #FF00FF; box-shadow: 0 0 10px #FF00FF, inset 0 0 5px #FF00FF;">
-                <p class="text-6xl subtitle text-white mb-4">MARTES DE ALTO RENDIMIENTO</p>
-                <p class="text-7xl title neon-cyan leading-tight mb-8">RECOVERY UPGRADE</p>
-                <p class="text-5xl subtitle text-gray-400 mb-6">MILKSHAKE 25G + MÓDULO NAD+</p>
-                
-                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
-                    <span class="text-4xl text-gray-600 line-through font-bold">$7.490</span>
-                    <span class="text-9xl title neon-magenta leading-none">$5.990</span>
-                </div>
-            </div>
-            <p class="text-3xl subtitle text-gray-500 mt-10">SOLICITA TU UPGRADE EN CAJA</p>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- SLIDE EXCLUSIVO: OFERTA DEL MIÉRCOLES     -->
-        <!-- ========================================= -->
-        <div id="slide-offer-wednesday" class="slide bg-grid">
-            <h2 class="text-8xl title neon-cyan mb-16 animate-neon-pulse">
-                [ PROTOCOL: RESILIENCE ]
-            </h2>
-
-            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7); border: 3px solid #00FFFF; box-shadow: 0 0 10px #00FFFF, inset 0 0 5px #00FFFF;">
-                <p class="text-6xl subtitle text-white mb-4">MIÉRCOLES DE RESISTENCIA</p>
-                <p class="text-7xl title neon-magenta leading-tight mb-8">JOINT SUPPORT COMBO</p>
-                <p class="text-5xl subtitle text-gray-400 mb-6">MILKSHAKE 25G + MÓDULO COLÁGENO</p>
-                
-                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
-                    <span class="text-4xl text-gray-600 line-through font-bold">$7.490</span>
-                    <span class="text-9xl title neon-cyan leading-none">$5.990</span>
-                </div>
-            </div>
-            <p class="text-3xl subtitle text-gray-500 mt-10">FORTALECE TU ESTRUCTURA HOY</p>
-        </div>
-
-
-        <!-- ========================================= -->
-        <!-- SLIDE DE CAFETERÍA (Cyber-Estética)       -->
-        <!-- ========================================= -->
-        <div id="slide-cafe" class="slide bg-grid">
-            <h2 class="text-8xl title neon-magenta mb-16 animate-slide-in-down">
-                [ REFUEL: COFFEE BAR ]
-            </h2>
-
-            <div class="w-full max-w-4xl px-8 space-y-8 bg-black/50 p-8 rounded-lg border-2 border-cyber-magenta">
-                
-                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0s;">
-                    <span class="text-cyber-cyan font-black">ESPRESSO</span>
-                    <span class="dashed-line text-cyber-magenta">$1.500</span>
-                </div>
-                
-                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.2s;">
-                    <span class="text-cyber-cyan font-black">AMERICANO</span>
-                    <span class="dashed-line text-cyber-magenta">$1.800</span>
-                </div>
-                
-                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.4s;">
-                    <span class="text-cyber-cyan font-black">CAPUCHINO</span>
-                    <span class="dashed-line text-cyber-magenta">$2.500</span>
-                </div>
-                
-                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.6s;">
-                    <span class="text-cyber-cyan font-black">CAFÉ LATTE</span>
-                    <span class="dashed-line text-cyber-magenta">$2.800</span>
-                </div>
-
-                <p class="text-3xl text-gray-600 pt-8 text-center border-t border-dashed border-gray-700">UPGRADE: PROTEÍNA SHOT +$500</p>
-
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- SLIDE 1: OFERTA PRINCIPAL (25g)           -->
-        <!-- ========================================= -->
-        <div id="slide-prod1" class="slide bg-grid">
-            <h2 class="text-7xl lg:text-9xl title text-white italic mb-4 animate-slide-in-down">
-                [ SPEC: WHEY PROTEIN ]
-            </h2>
-            <p class="text-5xl subtitle neon-magenta font-bold tracking-widest mb-10 uppercase">MILKSHAKE ACTIVO</p>
-
-            <div class="flex flex-col items-center p-8 border-4 border-cyber-cyan rounded-xl bg-black/50">
-                <span class="text-[12rem] leading-none font-black neon-cyan text-shadow title animate-neon-pulse">25G</span>
-                <span class="text-5xl text-gray-400 font-bold -mt-4">MACRO RECUPERACIÓN</span>
-            </div>
-
-            <div class="price-tag mt-12 border-2 border-cyber-magenta p-6 rounded-lg bg-black/70 animate-slide-in-up">
-                <span class="text-4xl text-gray-500 font-bold mr-4">PRECIO BASE:</span>
-                <span class="text-7xl neon-magenta font-black subtitle">$3.500</span>
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- SLIDE 2: TOPPINGS (Personalización)       -->
-        <!-- ========================================= -->
-        <div id="slide-prod2" class="slide bg-grid">
-            <h2 class="text-6xl lg:text-8xl title neon-cyan mb-16 text-center animate-slide-in-down">
-                [ MÓDULO: CUSTOM ]
-            </h2>
-            
-            <p class="text-4xl subtitle text-gray-400 mb-12">Añade MÓDULO EXTRA por <span class="neon-red font-black">$1.000</span></p>
-
-            <div class="grid grid-cols-3 gap-8 w-full max-w-4xl px-4">
-                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0s;">
-                    <span class="text-6xl">🍓</span>
-                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">FRUTILLA</span>
-                </div>
-                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0.2s;">
-                    <span class="text-6xl">🥜</span>
-                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">MANTEQUILLA</span>
-                </div>
-                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0.4s;">
-                    <span class="text-6xl">🫐</span>
-                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">ARÁNDANOS</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- SLIDE 3: SUPERFÓRMULA (Premium)           -->
-        <!-- ========================================= -->
-        <div id="slide-prod3" class="slide bg-grid">
-            <h2 class="text-7xl lg:text-9xl title neon-red mb-8 text-shadow text-center animate-slide-in-down">
-                [ CORE UPGRADE ]
-            </h2>
-            <div class="flex flex-col gap-4 mb-12 text-center">
-                <p class="text-5xl subtitle text-gray-400 font-bold">PROTEÍNA + COLÁGENO</p>
-                <p class="text-6xl subtitle neon-magenta font-black animate-neon-pulse">MÓDULO NAD+ ACTIVO</p>
-            </div>
-
-            <div class="neon-box p-8 rounded-xl bg-cyber-red/20 border-cyber-magenta">
-                <span class="text-4xl text-gray-500 font-bold mr-4">PRECIO MÁX:</span>
-                <span class="text-8xl title neon-cyan font-black">$4.990</span>
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- SLIDE 4: BRANDING (Llamada a la Acción)   -->
-        <!-- ========================================= -->
-        <div id="slide-prod4" class="slide bg-grid">
-            <h2 class="text-8xl title neon-cyan mb-8 text-center drop-shadow-lg animate-pulse">
-                [ COMMAND: ACTIVATE ]
-            </h2>
-            
-            <div class="bg-black/80 p-12 rounded-3xl border-4 border-cyber-red text-center transform rotate-1">
-                <h1 class="text-8xl title neon-magenta mb-2 leading-none">LA BARRA</h1>
-                <p class="text-3xl subtitle neon-cyan font-bold tracking-widest uppercase">BY MUSCLE GRENADE</p>
-            </div>
-
-            <p class="text-4xl subtitle text-gray-500 font-medium mt-16 text-center max-w-2xl leading-relaxed">
-                ¡SOLICITA TU ORDEN EN CAJA!
-            </p>
-        </div>
-
+    <!-- Contenedor principal del carrusel -->
+    <div id="carousel-container" class="relative w-full h-full">
+        <!-- Los slides se insertarán aquí por JavaScript -->
     </div>
 
-    <script>
-        // CONFIGURACIÓN DE TIEMPO
-        const slideDuration = 7000; // 7 segundos por slide
+    <script type="module">
+        // ===============================================
+        // DATOS DEL MENÚ Y CONFIGURACIÓN
+        // ===============================================
         
-        // ELEMENTOS DOM
-        const slides = {
-            intro: document.getElementById('slide-intro'), 
-            mondayOffer: document.getElementById('slide-offer-monday'), 
-            tuesdayOffer: document.getElementById('slide-offer-tuesday'), 
-            wednesdayOffer: document.getElementById('slide-offer-wednesday'), // Nuevo slide
-            cafe: document.getElementById('slide-cafe'), 
-            prod1: document.getElementById('slide-prod1'),
-            prod2: document.getElementById('slide-prod2'),
-            prod3: document.getElementById('slide-prod3'),
-            prod4: document.getElementById('slide-prod4'),
-        };
+        // Días de la semana para mensajes de bienvenida
+        const DAYS = [
+            'Domingo', 'Lunes', 'Martes', 'Miércoles', 
+            'Jueves', 'Viernes', 'Sábado'
+        ];
 
-        const introTitle = document.getElementById('intro-title');
-        const introSubtitle = document.getElementById('intro-subtitle');
-        const introContent = document.getElementById('intro-content');
-        const introSlide = document.getElementById('slide-intro');
-
-        // FRASES DIARIAS (Día 1 = Lunes, Día 5 = Viernes)
-        const dailyQuotes = {
-            1: "INICIA LA SEMANA CON ENERGÍA MÁXIMA. [TARGET ACQUISITION: GOALS].", // Lunes
-            2: "MODULAR UPGRADE: ACTIVE. EVITA LA FATIGA Y MANTÉN LA DISCIPLINA.", // Martes
-            3: "PROTOCOLO DE RESISTENCIA INICIADO. PROTEGE TUS ARTICULACIONES.", // Miércoles
-            4: "MANTÉN LA VISTA EN EL OBJETIVO. [PROCESS: EFFORT EQUALS REWARD].", // Jueves
-            5: "[PROTOCOLO: RECOVERY] CIERRE SEMANAL. MILKSHAKE REPARADOR.", // Viernes
-        };
-
-
-        // =========================================================
-        // LÓGICA DE PROGRAMACIÓN
-        // =========================================================
-        
-        // ** CAMBIAR AQUÍ PARA PROBAR: 0=Dom, 1=Lun, 2=Mar, 3=Mie... 6=Sáb **
-        const today = 3; // <<-- MODO MIÉRCOLES FORZADO PARA PREVISUALIZACIÓN
-        // const today = new Date().getDay(); // 0: Domingo, 1: Lunes ... 6: Sábado
-        
-        let playlist = [];
-        let dailyOfferSlide = null;
-
-        // 1. Definir el contenido del slide introductorio
-        if (today === 0) { // DOMINGO
-            introTitle.innerHTML = "[ PROTOCOL: REST & REFLECTION ]";
-            introSubtitle.innerHTML = "SYSTEM MESSAGE: VERSÍCULO DEL DÍA";
-            introContent.innerHTML = `
-                <div class="text-center text-white">
-                    <p class="text-5xl font-black italic leading-relaxed text-cyber-cyan">
-                        "Este es el día que hizo el Señor; nos gozaremos y alegraremos en él."
-                    </p>
-                    <p class="text-3xl font-bold text-cyber-magenta mt-8">— SALMOS 118:24</p>
-                </div>
-            `;
-            // Aplicar estilo de Domingo (Fondo claro y texto negro)
-            introSlide.classList.remove('bg-grid');
-            introSlide.classList.add('bg-sunday-style');
-            introContent.classList.remove('border-cyber-magenta');
-            introContent.classList.add('border-brand-purple');
-            introTitle.classList.remove('neon-cyan');
-            introTitle.classList.add('text-brand-purple');
-            introSubtitle.classList.remove('text-gray-400');
-            introSubtitle.classList.add('text-gray-600');
-            
-
-        } else if (today === 6) { // SÁBADO
-            introTitle.innerHTML = "[ PROTOCOL: RECHARGE INITIATED ]";
-            introSubtitle.innerHTML = "STATUS: VICTORIA SEMANAL";
-            introContent.innerHTML = `
-                <div class="text-white text-center">
-                    <p class="text-5xl font-black leading-snug text-cyber-cyan">
-                        TERMINASTE LA SEMANA. TU DISCIPLINA MERECE EL MEJOR COMBUSTIBLE PARA RECUPERARTE.
-                    </p>
-                    <p class="text-4xl text-cyber-magenta font-medium mt-8">[ REQUEST: MILKSHAKE DE RECARGA ]</p>
-                </div>
-            `;
-            introSlide.classList.remove('bg-sunday-style'); 
-            introSlide.classList.add('bg-grid'); 
-            
-        } else if (today >= 1 && today <= 5) { // LUNES a VIERNES
-            
-            if (today === 1) { // LUNES
-                dailyOfferSlide = slides.mondayOffer;
-            } else if (today === 2) { // MARTES
-                dailyOfferSlide = slides.tuesdayOffer;
-            } else if (today === 3) { // MIÉRCOLES
-                dailyOfferSlide = slides.wednesdayOffer;
-            } else {
-                 dailyOfferSlide = null; 
+        // Definición de la Oferta del Día
+        const DAILY_OFFER = {
+            // Day 4 = Jueves
+            4: { 
+                title: 'COMBO FUERZA JUEVES', 
+                description: '¡Dale poder a tu mañana! 🏋️‍♂️',
+                items: [
+                    'Muffin Integral Proteico (Sabor a elección)',
+                    'Café Americano Doble Shot'
+                ],
+                price: '$4.990',
+                themeColor: 'cyber-red',
+                glowClass: 'offer-glow-red'
             }
+            // Puedes añadir más ofertas para otros días aquí...
+        };
+
+        // Estructura de todos los slides del carrusel
+        // Las propiedades 'render' son funciones que devuelven el HTML para el slide
+        const SLIDES_DEFINITION = [
+            // 1. Slide Intro (Día de la semana)
+            {
+                id: 'intro',
+                render: (dayName) => `
+                    <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-gray-900">
+                        <p class="text-3xl text-gray-400 mb-8 tracking-widest">💪 DULCE HOMERO TE MOTIVA</p>
+                        <h1 class="text-9xl md:text-[10rem] font-extrabold leading-tight text-cyber-blue text-shadow-custom">
+                            ¡A DOMINAR EL ${dayName.toUpperCase()}!
+                        </h1>
+                        <p class="text-4xl text-gray-300 mt-12 max-w-4xl">
+                            Energía limpia, sabor real. Tu combustible para el alto rendimiento está aquí.
+                        </p>
+                    </div>
+                `
+            },
+            // 2. Slide Oferta del Día (Solo si hay oferta para el día forzado)
+            {
+                id: 'offer',
+                render: (offer) => {
+                    if (!offer) return ''; // No renderizar si no hay oferta
+                    return `
+                        <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-bg-dark border-4 border-${offer.themeColor}">
+                            <div class="p-10 rounded-xl ${offer.glowClass} max-w-4xl w-full">
+                                <p class="text-3xl text-gray-400 mb-4 tracking-widest">${offer.description}</p>
+                                <h1 class="text-7xl font-bold mb-10 text-${offer.themeColor} text-shadow-custom uppercase">
+                                    ${offer.title}
+                                </h1>
+                                <div class="space-y-4 mb-12">
+                                    ${offer.items.map(item => `
+                                        <div class="flex items-center justify-center text-3xl text-gray-200">
+                                            <svg class="w-8 h-8 mr-4 text-${offer.themeColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <span>${item}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="bg-gray-900 p-6 rounded-lg">
+                                    <span class="text-2xl text-gray-400 line-through mr-4">Precio Regular</span>
+                                    <span class="text-6xl font-extrabold text-${offer.themeColor}">${offer.price}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            // 3. Slide Batidos (Menú de Batidos Proteicos)
+            {
+                id: 'batidos',
+                render: () => `
+                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
+                        <h2 class="text-6xl font-extrabold mb-12 text-cyber-blue text-shadow-custom tracking-wider border-b-4 border-cyber-blue pb-2">
+                            POTENCIA LÍQUIDA 🚀
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
+                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
+                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">25G WHEY ISOLATE</h3>
+                                <p class="text-xl text-gray-300 mb-4">La dosis perfecta de proteína de rápida absorción.</p>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Vainilla Cero Azúcar</li>
+                                    <li>• Chocolate Intenso</li>
+                                    <li>• Frutos Rojos</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
+                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">TOPPINGS Y BOOSTERS</h3>
+                                <p class="text-xl text-gray-300 mb-4">Personaliza tu batido al máximo.</p>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Creatina Monohidrato (+5G)</li>
+                                    <li>• Leche de Almendras/Coco</li>
+                                    <li>• Mantequilla de Maní Natural</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
+                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">SUPERFÓRMULA PRE-WORK</h3>
+                                <p class="text-xl text-gray-300 mb-4">Máxima energía y enfoque para entrenamientos épicos.</p>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Beta Alanina y Taurina</li>
+                                    <li>• Sabor Limón-Jengibre</li>
+                                    <li>• SIN AZÚCAR, SIN CRASH</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            // 4. Slide Menú Sólido (Dulce Homero) - ¡EL NUEVO!
+            {
+                id: 'dulce-homero',
+                render: () => `
+                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
+                        <h2 class="text-7xl font-extrabold mb-10 text-cyber-red text-shadow-custom tracking-widest">
+                            DULCE HOMERO 🍩 SÓLIDO
+                        </h2>
+                        <p class="text-3xl text-gray-300 mb-12">Cuando el hambre ataca, tenemos el plan B (y C).</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
+                            
+                            <!-- SANDWICHES -->
+                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
+                                <div class="flex items-center mb-4">
+                                    <span class="text-5xl mr-3 text-cyber-red">🥪</span>
+                                    <h3 class="text-3xl font-bold text-gray-100">SÁNDWICHES Y FOCACCIA</h3>
+                                </div>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Pavo/Palta en Pan Integral</li>
+                                    <li>• Focaccia Caprese y Pesto</li>
+                                    <li>• Jamón de Campo y Queso Fundido</li>
+                                </ul>
+                            </div>
+
+                            <!-- COMPLETOS -->
+                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
+                                <div class="flex items-center mb-4">
+                                    <span class="text-5xl mr-3 text-cyber-red">🌭</span>
+                                    <h3 class="text-3xl font-bold text-gray-100">COMPLETOS GIGANTES</h3>
+                                </div>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• El Clásico (Tomate, Mayo, Chucrut)</li>
+                                    <li>• Italiano (Tomate, Palta, Mayo)</li>
+                                    <li>• Americano (Cebolla, Mostaza, Ketchup)</li>
+                                </ul>
+                            </div>
+
+                            <!-- MUFFINS -->
+                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
+                                <div class="flex items-center mb-4">
+                                    <span class="text-5xl mr-3 text-cyber-red">🧁</span>
+                                    <h3 class="text-3xl font-bold text-gray-100">MUFFINS & SNACKS</h3>
+                                </div>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Muffin de Arándano/Chocolate</li>
+                                    <li>• Brownie Triple Cacao</li>
+                                    <li>• Barra de Cereal Casera</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            // 5. Slide Cafetería (Menú de Café)
+            {
+                id: 'cafeteria',
+                render: () => `
+                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-900">
+                        <h2 class="text-6xl font-extrabold mb-12 text-yellow-300 text-shadow-custom tracking-wider border-b-4 border-yellow-300 pb-2">
+                            EL RITUAL DEL CAFÉ ☕
+                        </h2>
+                        <div class="grid grid-cols-2 gap-x-20 gap-y-8 max-w-4xl w-full">
+                            ${[
+                                { name: 'Americano', price: '$2.200' },
+                                { name: 'Espresso', price: '$1.800' },
+                                { name: 'Latte', price: '$2.800' },
+                                { name: 'Capuccino', price: '$2.900' },
+                                { name: 'Mocaccino', price: '$3.200' },
+                                { name: 'Chocolate Caliente', price: '$2.500' },
+                            ].map(item => `
+                                <div class="flex justify-between items-end border-b border-gray-700 pb-1">
+                                    <span class="text-3xl text-gray-200">${item.name}</span>
+                                    <span class="text-2xl font-semibold text-yellow-300">${item.price}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <p class="text-2xl text-gray-400 mt-12 italic">
+                            Disponible con Leche Vegetal (Almendra/Soya) +$500
+                        </p>
+                    </div>
+                `
+            },
+            // 6. Slide Branding/CTA (Llamada a la Acción)
+            {
+                id: 'branding',
+                render: () => `
+                    <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-bg-dark">
+                        <h1 class="text-8xl md:text-[8rem] font-black leading-none text-gray-100 mb-8">
+                            DULCE HOMERO
+                        </h1>
+                        <p class="text-4xl text-cyber-blue font-bold tracking-widest mb-12">
+                            TU FUERZA, TU SABOR.
+                        </p>
+                        <div class="flex space-x-8 text-3xl text-gray-300">
+                            <span class="flex items-center">
+                                <svg class="w-8 h-8 mr-3 text-cyber-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                @DulceHomeroFit
+                            </span>
+                            <span class="flex items-center">
+                                <svg class="w-8 h-8 mr-3 text-cyber-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                ¡Pregúntanos por planes de alimentación!
+                            </span>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // ===============================================
+        // LÓGICA DEL CARRUSEL
+        // ===============================================
+
+        const carouselContainer = document.getElementById('carousel-container');
+        let currentSlideIndex = 0;
+        const SLIDE_DURATION_MS = 8000; // 8 segundos por slide
+
+        // FORZAR MODO JUEVES (Day 4) como se solicitó
+        const forcedDay = 4; 
+        const today = DAYS[forcedDay];
+        const offerForToday = DAILY_OFFER[forcedDay];
+        
+        let allSlides = [];
+
+        // Función para inicializar y construir la secuencia de slides
+        const initializeSlides = () => {
+            // 1. INTRO
+            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'intro'));
             
-            const quote = dailyQuotes[today];
-            introTitle.innerHTML = "[ PROTOCOL: DAILY ACTIVE ]";
-            introSubtitle.innerHTML = "SYSTEM MESSAGE: ENFOQUE";
-            introContent.innerHTML = `
-                <div class="text-white text-center">
-                    <p class="text-5xl font-black leading-snug animate-slide-in-up text-cyber-cyan">
-                        ${quote}
-                    </p>
-                    <p class="text-4xl text-cyber-magenta font-medium mt-8">[ EXECUTE ORDER: LA BARRA ]</p>
-                </div>
-            `;
-            introSlide.classList.remove('bg-sunday-style'); 
-            introSlide.classList.add('bg-grid'); 
-        }
+            // 2. OFERTA DEL DÍA (Solo si existe)
+            if (offerForToday) {
+                allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'offer'));
+            }
 
-        // 3. Crear la playlist: INTRO + OFERTA DIARIA (si existe) + PRODUCTOS BASE
-        playlist = [slides.intro];
-
-        if (dailyOfferSlide) {
-            playlist.push(dailyOfferSlide);
-        }
-
-        playlist = playlist.concat([
-            slides.prod1, // 25g Proteína
-            slides.prod2, // Toppings
-            slides.prod3, // Superfórmula
-            slides.cafe,  // Carta de Café
-            slides.prod4, // Branding
-        ]);
-
-        let currentIndex = 0;
-
-        function rotateSlides() {
-            // Ocultar todos
-            Object.values(slides).forEach(slide => slide.classList.remove('active'));
+            // 3. BATIDOS
+            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'batidos'));
             
-            // Mostrar actual
-            playlist[currentIndex].classList.add('active');
+            // 4. MENÚ SÓLIDO (Dulce Homero)
+            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'dulce-homero'));
 
-            // Calcular siguiente índice
-            currentIndex = (currentIndex + 1) % playlist.length;
-        }
+            // 5. CAFETERÍA
+            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'cafeteria'));
 
-        // Iniciar
-        rotateSlides();
-        setInterval(rotateSlides, slideDuration);
+            // 6. BRANDING
+            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'branding'));
+        };
+
+        // Función que genera y muestra el slide actual
+        const showSlide = (index) => {
+            carouselContainer.innerHTML = '';
+            
+            // Asegura que el índice esté dentro de los límites
+            if (index < 0 || index >= allSlides.length) {
+                index = 0;
+                currentSlideIndex = 0;
+            }
+
+            const slideData = allSlides[index];
+            let contentHTML = '';
+
+            // Renderiza el contenido del slide usando la función 'render'
+            if (slideData.id === 'intro') {
+                contentHTML = slideData.render(today);
+            } else if (slideData.id === 'offer') {
+                contentHTML = slideData.render(offerForToday);
+            } else {
+                contentHTML = slideData.render();
+            }
+
+            // Crea el elemento div para el slide
+            const slideElement = document.createElement('div');
+            slideElement.className = 'slide absolute top-0 left-0 w-full h-full opacity-0';
+            slideElement.innerHTML = contentHTML;
+            carouselContainer.appendChild(slideElement);
+
+            // Fuerza el reflow y luego cambia la opacidad para la transición
+            void slideElement.offsetWidth;
+            slideElement.style.opacity = '1';
+        };
+
+        // Función para avanzar al siguiente slide
+        const nextSlide = () => {
+            currentSlideIndex = (currentSlideIndex + 1) % allSlides.length;
+            showSlide(currentSlideIndex);
+        };
+
+        // Inicia el carrusel
+        window.onload = () => {
+            initializeSlides();
+            showSlide(currentSlideIndex); // Muestra el primer slide inmediatamente
+            
+            // Inicia la rotación automática
+            setInterval(nextSlide, SLIDE_DURATION_MS);
+        };
+
     </script>
 </body>
 </html>
+
 
 
