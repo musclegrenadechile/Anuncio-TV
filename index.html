@@ -3,53 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sábado - Carta & Ofertas del Día - La Barra Protein</title>
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>La Barra - Anuncio TV (Diseño Futurista)</title>
+    <!-- Tailwind CSS (CDN confiable) --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Oswald (titulares), Rubik (cuerpo) --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Rubik:wght@500;800&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'vibrant-pink': '#FF4F81',
-                        'sun-yellow': '#FFD54F',
-                        'deep-night': '#1C1F2A',
-                        'cream-white': '#FFF8E1',
-                        'bar-orange': '#FF8C00',
-                        'mint': '#A5F3CF',
-                        'soft-lilac': '#D7B8FF',
-                        'soft-blue': '#A5D8FF',
-                        'soft-bg': '#101322',
-                        'card-dark': '#1E2435',
+                        'cyber-black': '#000000',      // Fondo ultra oscuro
+                        'cyber-cyan': '#00FFFF',       // Brillo primario
+                        'cyber-magenta': '#FF00FF',    // Brillo secundario
+                        'cyber-red': '#FF0055',        // Para llamadas de acción
+                        'light-grid': '#333333',       // Color para líneas de rejilla
+                        'sunday-bg-light': '#E0F7FA',  // Fondo claro domingo
+                        'brand-purple': '#9D00FF',
                     },
                     fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        heading: ['Bebas Neue', 'cursive'],
+                        heading: ['Oswald', 'sans-serif'], 
+                        sans: ['Rubik', 'sans-serif'],
                     },
                     animation: {
-                        'float': 'float 4s ease-in-out infinite',
-                        'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
-                        'gradient-shift': 'gradient-shift 12s ease infinite alternate',
+                        'neon-pulse': 'neon-pulse 1.5s infinite alternate',
+                        'scanline': 'scanline 0.5s linear infinite',
+                        'slide-in-up': 'slide-in-up 0.8s ease-out forwards',
+                        'slide-in-down': 'slide-in-down 0.8s ease-out forwards',
+                        'scale-in': 'scale-in 0.8s ease-out forwards',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                        'neon-pulse': {
+                            '0%': { transform: 'scale(1)', textShadow: '0 0 5px #00FFFF' },
+                            '100%': { transform: 'scale(1.02)', textShadow: '0 0 15px #00FFFF, 0 0 8px #FF00FF' },
                         },
-                        'pulse-soft': {
-                            '0%, 100%': { transform: 'scale(1)' },
-                            '50%': { transform: 'scale(1.03)' },
+                        'scanline': {
+                            '0%': { backgroundPosition: '0% 0' },
+                            '100%': { backgroundPosition: '0% 100%' }
                         },
-                        'gradient-shift': {
-                            '0%': { backgroundPosition: '0% 50%' },
-                            '100%': { backgroundPosition: '100% 50%' },
+                        'slide-in-up': {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        'slide-in-down': {
+                            '0%': { transform: 'translateY(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        'scale-in': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
                         }
                     }
                 }
@@ -58,421 +62,436 @@
     </script>
 
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
+        /* Estilos base para asegurar pantalla completa */
+        body, html {
             margin: 0;
-            background-color: #101322;
-            color: white;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            overflow: hidden;
         }
 
-        .tv-screen {
-            min-height: 100vh;
+        .tv-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .slides-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
         }
 
         .slide {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            padding: 2.5rem;
-            box-sizing: border-box;
-            background-size: 400% 400%;
+            opacity: 0;
+            transition: opacity 1.0s ease-in-out;
+            pointer-events: none;
+            background-size: cover;
+            background-position: center;
+            color: #E0E0E0;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Sombra base para todo */
         }
 
         .slide.active {
             opacity: 1;
-            z-index: 10;
+            z-index: 50;
+            pointer-events: auto;
         }
 
-        #slide-1 {
-            background: radial-gradient(circle at top, #FFAEBC, #101322 60%, #05060A);
-            animation: gradient-shift 14s ease infinite alternate;
-        }
-        #slide-2 {
-            background: linear-gradient(135deg, #101322, #264653, #101322);
-            animation: gradient-shift 13s ease infinite alternate-reverse;
-        }
-        #slide-3 {
-            background: linear-gradient(135deg, #101322, #4A2C82, #101322);
-            animation: gradient-shift 12s ease infinite;
-        }
-        #slide-4 {
-            background: radial-gradient(circle at center, #FF8C00, #101322 60%, #000000);
-            animation: gradient-shift 11s ease infinite alternate;
-        }
-        #slide-5 {
-            background: linear-gradient(135deg, #101322, #1E2435, #101322);
-            animation: gradient-shift 12s ease infinite alternate-reverse;
+        /* Efectos de Brillo Neon */
+        .neon-cyan { text-shadow: 0 0 5px #00FFFF, 0 0 15px #00FFFF; color: #00FFFF; }
+        .neon-magenta { text-shadow: 0 0 5px #FF00FF, 0 0 15px #FF00FF; color: #FF00FF; }
+        .neon-red { text-shadow: 0 0 5px #FF0055, 0 0 15px #FF0055; color: #FF0055; }
+        .neon-box {
+            border: 3px solid #00FFFF;
+            box-shadow: 0 0 10px #00FFFF, inset 0 0 5px #00FFFF;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
         }
 
+        /* Estilo de Rejilla (GRID) de Fondo */
+        .bg-grid {
+            background-color: #000000;
+            background-image: linear-gradient(0deg, transparent 95%, #333333 100%), linear-gradient(90deg, transparent 95%, #333333 100%);
+            background-size: 50px 50px;
+            /* animation: scanline 0.5s linear infinite; */
+        }
+        
         .title {
-            font-family: 'Bebas Neue', cursive;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-
-        .glass-card {
-            background: rgba(10,10,18,0.75);
-            border-radius: 1.8rem;
-            padding: 1.6rem 2.2rem;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-        }
-
-        .tag-pill {
-            border-radius: 9999px;
-            padding: 0.4rem 1.2rem;
-            font-size: 1.1rem;
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.3em;
+            line-height: 0.9;
         }
-
-        .price-pill {
-            border-radius: 9999px;
-            padding: 0.5rem 1.6rem;
-            border: 2px solid rgba(255,255,255,0.7);
-            display: inline-flex;
-            align-items: baseline;
-            gap: 0.4rem;
+        .subtitle {
+             font-family: 'Rubik', sans-serif;
+             font-weight: 800;
+        }
+        .dashed-line {
+            border-bottom: 2px dashed #FF00FF;
+            padding-bottom: 5px;
         }
     </style>
 </head>
+<body class="bg-cyber-black">
 
-<body class="tv-screen">
-    <div class="slides-container">
+    <div class="tv-container">
 
-        <!-- SLIDE 1: SÁBADO - OFERTAS DEL DÍA -->
-        <div id="slide-1" class="slide active">
-            <!-- Frase motivadora del día -->
-            <div class="mb-6 max-w-5xl text-center">
-                <p class="text-2xl lg:text-3xl font-bold text-sun-yellow animate-pulse-soft">
-                    ⭐ FRASE DEL DÍA: ES SÁBADO, PERO LA DISCIPLINA NO DESCANSA. 
-                    CADA REPETICIÓN Y CADA ELECCIÓN QUE HACES HOY CONSTRUYE EL CUERPO Y 
-                    LA VIDA QUE QUIERES PARA MAÑANA. ⭐
+        <!-- ========================================= -->
+        <!-- SLIDE INTRODUCTORIO CONSOLIDADO (TODOS LOS DÍAS) -->
+        <!-- ========================================= -->
+        <div id="slide-intro" class="slide bg-grid">
+            <div class="text-center px-12 w-full max-w-6xl">
+                <p id="intro-title" class="text-7xl title neon-cyan mb-4 animate-slide-in-down">
+                    <!-- Título inyectado por JS (ej: ¡Feliz Lunes!) -->
+                </p>
+                <p id="intro-subtitle" class="text-4xl subtitle text-gray-400 mb-10 animate-slide-in-up" style="animation-delay: 0.2s;">
+                    <!-- Subtítulo inyectado por JS (ej: Motivación del Día) -->
+                </p>
+
+                <div id="intro-content" class="p-12 rounded-lg border-2 border-cyber-magenta animate-scale-in" style="animation-delay: 0.4s; background: rgba(0, 0, 0, 0.8);">
+                    <!-- Contenido (Versículo o Frase Motivadora) inyectado por JS -->
+                </div>
+                
+                <p class="text-xl text-gray-600 font-bold mt-12 animate-slide-in-up" style="animation-delay: 0.8s;">
+                    LA BARRA BY MUSCLE GRENADE | [SYSTEM ACTIVE]
                 </p>
             </div>
+        </div>
+        
+        <!-- ========================================= -->
+        <!-- SLIDE EXCLUSIVO: OFERTA DEL LUNES         -->
+        <!-- ========================================= -->
+        <div id="slide-offer-monday" class="slide bg-grid">
+            <h2 class="text-8xl title neon-cyan mb-16 animate-neon-pulse">
+                [ PROTOCOL: OFFER ]
+            </h2>
 
-            <div class="text-center mb-8">
-                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.5em] mb-2">
-                    SÁBADO
-                </p>
-                <h1 class="title text-7xl lg:text-[8.5rem] text-cream-white animate-float">
-                    OFERTAS DEL DÍA
-                </h1>
+            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7);">
+                <p class="text-6xl subtitle text-white mb-4">LUNES DE ENFOQUE</p>
+                <p class="text-7xl title neon-red leading-tight mb-8">FUEL COMBO 25G</p>
+                <p class="text-5xl subtitle text-gray-400 mb-6">+ CAFEÍNA INYECTADA</p>
+                
+                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
+                    <span class="text-4xl text-gray-600 line-through font-bold">$5.300</span>
+                    <span class="text-9xl title neon-cyan leading-none">$4.000</span>
+                </div>
+            </div>
+            <p class="text-3xl subtitle text-gray-500 mt-10">VÁLIDO SOLO HASTA [23:59:59]</p>
+        </div>
+        
+        <!-- ========================================= -->
+        <!-- SLIDE EXCLUSIVO: OFERTA DEL MARTES        -->
+        <!-- ========================================= -->
+        <div id="slide-offer-tuesday" class="slide bg-grid">
+            <h2 class="text-8xl title neon-magenta mb-16 animate-neon-pulse">
+                [ PROTOCOL: OPTIMIZE ]
+            </h2>
+
+            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7); border: 3px solid #FF00FF; box-shadow: 0 0 10px #FF00FF, inset 0 0 5px #FF00FF;">
+                <p class="text-6xl subtitle text-white mb-4">MARTES DE ALTO RENDIMIENTO</p>
+                <p class="text-7xl title neon-cyan leading-tight mb-8">RECOVERY UPGRADE</p>
+                <p class="text-5xl subtitle text-gray-400 mb-6">MILKSHAKE 25G + MÓDULO NAD+</p>
+                
+                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
+                    <span class="text-4xl text-gray-600 line-through font-bold">$7.490</span>
+                    <span class="text-9xl title neon-magenta leading-none">$5.990</span>
+                </div>
+            </div>
+            <p class="text-3xl subtitle text-gray-500 mt-10">SOLICITA TU UPGRADE EN CAJA</p>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- SLIDE EXCLUSIVO: OFERTA DEL MIÉRCOLES     -->
+        <!-- ========================================= -->
+        <div id="slide-offer-wednesday" class="slide bg-grid">
+            <h2 class="text-8xl title neon-cyan mb-16 animate-neon-pulse">
+                [ PROTOCOL: RESILIENCE ]
+            </h2>
+
+            <div class="neon-box p-12 rounded-lg text-center max-w-2xl animate-scale-in" style="animation-delay: 0.5s; background: rgba(0, 0, 0, 0.7); border: 3px solid #00FFFF; box-shadow: 0 0 10px #00FFFF, inset 0 0 5px #00FFFF;">
+                <p class="text-6xl subtitle text-white mb-4">MIÉRCOLES DE RESISTENCIA</p>
+                <p class="text-7xl title neon-magenta leading-tight mb-8">JOINT SUPPORT COMBO</p>
+                <p class="text-5xl subtitle text-gray-400 mb-6">MILKSHAKE 25G + MÓDULO COLÁGENO</p>
+                
+                <div class="flex items-center justify-center space-x-6 mt-8 border-t border-dashed border-gray-700 pt-6">
+                    <span class="text-4xl text-gray-600 line-through font-bold">$7.490</span>
+                    <span class="text-9xl title neon-cyan leading-none">$5.990</span>
+                </div>
+            </div>
+            <p class="text-3xl subtitle text-gray-500 mt-10">FORTALECE TU ESTRUCTURA HOY</p>
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- SLIDE DE CAFETERÍA (Cyber-Estética)       -->
+        <!-- ========================================= -->
+        <div id="slide-cafe" class="slide bg-grid">
+            <h2 class="text-8xl title neon-magenta mb-16 animate-slide-in-down">
+                [ REFUEL: COFFEE BAR ]
+            </h2>
+
+            <div class="w-full max-w-4xl px-8 space-y-8 bg-black/50 p-8 rounded-lg border-2 border-cyber-magenta">
+                
+                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0s;">
+                    <span class="text-cyber-cyan font-black">ESPRESSO</span>
+                    <span class="dashed-line text-cyber-magenta">$1.500</span>
+                </div>
+                
+                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.2s;">
+                    <span class="text-cyber-cyan font-black">AMERICANO</span>
+                    <span class="dashed-line text-cyber-magenta">$1.800</span>
+                </div>
+                
+                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.4s;">
+                    <span class="text-cyber-cyan font-black">CAPUCHINO</span>
+                    <span class="dashed-line text-cyber-magenta">$2.500</span>
+                </div>
+                
+                <div class="flex justify-between items-end text-white text-5xl subtitle animate-slide-in-left" style="animation-delay: 0.6s;">
+                    <span class="text-cyber-cyan font-black">CAFÉ LATTE</span>
+                    <span class="dashed-line text-cyber-magenta">$2.800</span>
+                </div>
+
+                <p class="text-3xl text-gray-600 pt-8 text-center border-t border-dashed border-gray-700">UPGRADE: PROTEÍNA SHOT +$500</p>
+
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- SLIDE 1: OFERTA PRINCIPAL (25g)           -->
+        <!-- ========================================= -->
+        <div id="slide-prod1" class="slide bg-grid">
+            <h2 class="text-7xl lg:text-9xl title text-white italic mb-4 animate-slide-in-down">
+                [ SPEC: WHEY PROTEIN ]
+            </h2>
+            <p class="text-5xl subtitle neon-magenta font-bold tracking-widest mb-10 uppercase">MILKSHAKE ACTIVO</p>
+
+            <div class="flex flex-col items-center p-8 border-4 border-cyber-cyan rounded-xl bg-black/50">
+                <span class="text-[12rem] leading-none font-black neon-cyan text-shadow title animate-neon-pulse">25G</span>
+                <span class="text-5xl text-gray-400 font-bold -mt-4">MACRO RECUPERACIÓN</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full">
+            <div class="price-tag mt-12 border-2 border-cyber-magenta p-6 rounded-lg bg-black/70 animate-slide-in-up">
+                <span class="text-4xl text-gray-500 font-bold mr-4">PRECIO BASE:</span>
+                <span class="text-7xl neon-magenta font-black subtitle">$3.500</span>
+            </div>
+        </div>
 
-                <!-- Oferta 1: NAD+ -->
-                <div class="glass-card animate-pulse-soft">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="tag-pill bg-soft-blue/90 text-deep-night">
-                            OMEGA CLÍNICA
-                        </span>
-                        <span class="text-sm text-cream-white/80 uppercase">NAD+ 100 servicios</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
-                        NAD+ OMEGA CLÍNICA · 100 SERVICIOS
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
-                        Apoya energía celular, recuperación y rendimiento diario.
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
-                        Antes: $34.990.-
-                    </p>
-                    <div class="price-pill bg-black/50 border-mint/80">
-                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
-                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$25.000.-</span>
-                    </div>
+        <!-- ========================================= -->
+        <!-- SLIDE 2: TOPPINGS (Personalización)       -->
+        <!-- ========================================= -->
+        <div id="slide-prod2" class="slide bg-grid">
+            <h2 class="text-6xl lg:text-8xl title neon-cyan mb-16 text-center animate-slide-in-down">
+                [ MÓDULO: CUSTOM ]
+            </h2>
+            
+            <p class="text-4xl subtitle text-gray-400 mb-12">Añade MÓDULO EXTRA por <span class="neon-red font-black">$1.000</span></p>
+
+            <div class="grid grid-cols-3 gap-8 w-full max-w-4xl px-4">
+                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0s;">
+                    <span class="text-6xl">🍓</span>
+                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">FRUTILLA</span>
                 </div>
-
-                <!-- Oferta 2: Army Labs + Creatina -->
-                <div class="glass-card">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="tag-pill bg-mint/90 text-deep-night">
-                            PACK FUERZA
-                        </span>
-                        <span class="text-sm text-cream-white/80 uppercase">Army Labs</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
-                        PROTEÍNA ARMY LABS 5 LB + CREATINA
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
-                        Combina proteína de alta calidad con creatina para fuerza y masa muscular.
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
-                        Antes: $79.990.-
-                    </p>
-                    <div class="price-pill bg-black/50 border-soft-lilac/80">
-                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
-                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$54.990.-</span>
-                    </div>
+                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0.2s;">
+                    <span class="text-6xl">🥜</span>
+                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">MANTEQUILLA</span>
                 </div>
-
-                <!-- Oferta 3: Killer Pump -->
-                <div class="glass-card">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="tag-pill bg-vibrant-pink/90 text-cream-white">
-                            PRE-ENTRENO
-                        </span>
-                        <span class="text-sm text-cream-white/80 uppercase">Killer Pump</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-extrabold text-cream-white mb-2">
-                        KILLER PUMP · PRE-ENTRENO
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/90 mb-4">
-                        Enfoque, energía y congestión máxima para tus sábados de pierna.
-                    </p>
-                    <p class="text-lg lg:text-xl text-cream-white/70 line-through mb-1">
-                        Antes: $29.990.-
-                    </p>
-                    <div class="price-pill bg-black/50 border-vibrant-pink/90">
-                        <span class="text-lg lg:text-xl text-cream-white font-semibold">AHORA</span>
-                        <span class="text-3xl lg:text-4xl text-sun-yellow font-extrabold">$21.990.-</span>
-                    </div>
+                <div class="bg-black/80 border-b-4 border-cyber-cyan rounded-lg p-6 flex flex-col items-center animate-slide-in-up" style="animation-delay: 0.4s;">
+                    <span class="text-6xl">🫐</span>
+                    <span class="text-3xl subtitle neon-cyan font-bold mt-2">ARÁNDANOS</span>
                 </div>
+            </div>
+        </div>
 
+        <!-- ========================================= -->
+        <!-- SLIDE 3: SUPERFÓRMULA (Premium)           -->
+        <!-- ========================================= -->
+        <div id="slide-prod3" class="slide bg-grid">
+            <h2 class="text-7xl lg:text-9xl title neon-red mb-8 text-shadow text-center animate-slide-in-down">
+                [ CORE UPGRADE ]
+            </h2>
+            <div class="flex flex-col gap-4 mb-12 text-center">
+                <p class="text-5xl subtitle text-gray-400 font-bold">PROTEÍNA + COLÁGENO</p>
+                <p class="text-6xl subtitle neon-magenta font-black animate-neon-pulse">MÓDULO NAD+ ACTIVO</p>
             </div>
 
-            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/90 font-medium text-center">
-                PIDE ESTAS OFERTAS ESPECIALES DE <span class="text-sun-yellow font-bold">SÁBADO</span> EN EL MESÓN 💬
+            <div class="neon-box p-8 rounded-xl bg-cyber-red/20 border-cyber-magenta">
+                <span class="text-4xl text-gray-500 font-bold mr-4">PRECIO MÁX:</span>
+                <span class="text-8xl title neon-cyan font-black">$4.990</span>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- SLIDE 4: BRANDING (Llamada a la Acción)   -->
+        <!-- ========================================= -->
+        <div id="slide-prod4" class="slide bg-grid">
+            <h2 class="text-8xl title neon-cyan mb-8 text-center drop-shadow-lg animate-pulse">
+                [ COMMAND: ACTIVATE ]
+            </h2>
+            
+            <div class="bg-black/80 p-12 rounded-3xl border-4 border-cyber-red text-center transform rotate-1">
+                <h1 class="text-8xl title neon-magenta mb-2 leading-none">LA BARRA</h1>
+                <p class="text-3xl subtitle neon-cyan font-bold tracking-widest uppercase">BY MUSCLE GRENADE</p>
+            </div>
+
+            <p class="text-4xl subtitle text-gray-500 font-medium mt-16 text-center max-w-2xl leading-relaxed">
+                ¡SOLICITA TU ORDEN EN CAJA!
             </p>
         </div>
 
-        <!-- SLIDE 2: CARTA CAFÉS CALIENTES (SIN PROTEÍNA) -->
-        <div id="slide-2" class="slide">
-            <div class="text-center mb-8">
-                <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
-                    CARTA · CAFÉS CALIENTES
-                </p>
-                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
-                    CAFETERÍA LA BARRA
-                </h2>
-            </div>
-
-            <div class="glass-card max-w-4xl w-full">
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">ESPRESSO</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$2.000</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">AMERICANO</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$2.500</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">LATTE</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$2.800</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">CAPUCHINO</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$2.900</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">MOCHA</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.200</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">CAFÉ DOBLE</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.000</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">CAFÉ CON LECHE VEGETAL</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.200</span>
-                </div>
-            </div>
-
-            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-3xl">
-                LECHES VEGETALES DISPONIBLES · ENDULZANTE · CANELA · CHOCOLATE.  
-                EL CAFÉ PERFECTO PARA ACOMPAÑAR TU ENTRENAMIENTO DE SÁBADO ☕💪
-            </p>
-        </div>
-
-        <!-- SLIDE 3: CARTA SHAKES / FRAPUCHINOS (SOLO CON PROTEÍNA) -->
-        <div id="slide-3" class="slide">
-            <div class="text-center mb-8">
-                <p class="title text-4xl lg:text-5xl text-mint tracking-[0.3em] mb-2">
-                    SHAKES & FRAPUCHINOS PROTEIN
-                </p>
-            <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
-                    CARTA PROTEICA
-                </h2>
-            </div>
-
-            <div class="glass-card max-w-4xl w-full">
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        FRAPUCHINO PROTEIN · VOLCÁN DE CHOCOLATE
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.490</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        FRAPUCHINO PROTEIN · VAINILLA CREAM
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.490</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        FRAPUCHINO PROTEIN · COFFEE (CAFÉ FRÍO CON PROTEÍNA)
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        MILKSHAKE PROTEICO CLÁSICO (VAINILLA / CHOCOLATE)
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.500</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        SMOOTHIE ENERGÍA · FRUTILLA / PLÁTANO + PROTEÍNA
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        SMOOTHIE VERDE DETOX · ESPINACA / PIÑA / MANZANA
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        SHOT DE PROTEÍNA EXTRA (AÑADE A TU BEBIDA)
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$1.000</span>
-                </div>
-            </div>
-
-            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-3xl">
-                SÁBADO ES PARA DISFRUTAR… PERO TAMBIÉN PARA CUIDARTE.  
-                ELIGE TU FRAPUCHINO PROTEIN, ENTRENA DURO Y RECUPERA RICO 💪🥤
-            </p>
-        </div>
-
-        <!-- SLIDE 4: COMBO DEL DÍA FRAPUCHOCO PROTEIN -->
-        <div id="slide-4" class="slide">
-            <div class="text-center mb-6">
-                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.3em] mb-2">
-                    COMBO DEL DÍA
-                </p>
-                <h2 class="title text-7xl lg:text-[8rem] text-cream-white animate-float">
-                    FRAPUCHOCO PROTEIN
-                </h2>
-            </div>
-
-            <div class="glass-card max-w-5xl w-full flex flex-col lg:flex-row items-center justify-between gap-8">
-                <div class="max-w-xl">
-                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
-                        SUPER OFERTA ESPECIAL DE SÁBADO
-                    </p>
-                    <p class="text-2xl lg:text-3xl text-cream-white/90 mb-4">
-                        Frapuchino cremoso sabor <span class="text-sun-yellow font-bold">VOLCÁN DE CHOCOLATE</span> 
-                        con proteína, hielo y textura brutal para recargarte después del entrenamiento.
-                    </p>
-                    <p class="text-2xl lg:text-3xl text-cream-white mb-2 font-semibold">
-                        INCLUYE TOPPING A ELECCIÓN:
-                    </p>
-                    <ul class="text-2xl lg:text-3xl text-cream-white/95 space-y-1">
-                        <li>🍓 Frutilla</li>
-                        <li>🫐 Arándano</li>
-                        <li>🍌 Plátano</li>
-                    </ul>
-                    <p class="mt-4 text-xl lg:text-2xl text-cream-white/80">
-                        Pídeselo al mesón como: <span class="text-sun-yellow font-bold">“Combo FrapuChoco Protein”</span>.
-                    </p>
-                </div>
-
-                <div class="flex flex-col items-center gap-6">
-                    <div class="price-pill bg-black/70 border-sun-yellow animate-pulse-soft">
-                        <span class="text-2xl lg:text-3xl text-cream-white font-semibold">SUPER OFERTA</span>
-                        <span class="text-5xl lg:text-6xl text-sun-yellow font-extrabold">$5.990.-</span>
-                    </div>
-                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-sm">
-                        SOLO POR HOY · CUPOS LIMITADOS · PREGUNTA EN EL MESÓN ☕🥤
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 5: SUPLEMENTOS DESTACADOS -->
-        <div id="slide-5" class="slide">
-            <div class="text-center mb-8">
-                <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
-                    SUPLEMENTOS DESTACADOS
-                </p>
-                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
-                    MUSCLE GRENADE
-                </h2>
-            </div>
-
-            <div class="glass-card max-w-5xl w-full">
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">CREATINA MONOHIDRATO 300g</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$17.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">PROTEÍNA ARMY LABS 5 LB (SOLO)</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$49.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">KILLER PUMP · PRE-ENTRENO</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$21.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">BARRAS PROTEICAS (UNIDAD)</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$1.990</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">MULTIVITAMÍNICO DIARIO</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$12.990</span>
-                </div>
-            </div>
-
-            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-4xl">
-                HOY PUEDES EMPEZAR CON UN CAFÉ, CON UN FRAPUCHINO PROTEIN O CON UN SUPLEMENTO…  
-                LO IMPORTANTE ES QUE NO DEJES PARA EL LUNES EL CAMBIO QUE PUEDES HACER ESTE SÁBADO 💪🔥
-            </p>
-        </div>
     </div>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        const intervalTime = 9000; // 9 segundos por slide
+        // CONFIGURACIÓN DE TIEMPO
+        const slideDuration = 7000; // 7 segundos por slide
+        
+        // ELEMENTOS DOM
+        const slides = {
+            intro: document.getElementById('slide-intro'), 
+            mondayOffer: document.getElementById('slide-offer-monday'), 
+            tuesdayOffer: document.getElementById('slide-offer-tuesday'), 
+            wednesdayOffer: document.getElementById('slide-offer-wednesday'), // Nuevo slide
+            cafe: document.getElementById('slide-cafe'), 
+            prod1: document.getElementById('slide-prod1'),
+            prod2: document.getElementById('slide-prod2'),
+            prod3: document.getElementById('slide-prod3'),
+            prod4: document.getElementById('slide-prod4'),
+        };
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
+        const introTitle = document.getElementById('intro-title');
+        const introSubtitle = document.getElementById('intro-subtitle');
+        const introContent = document.getElementById('intro-content');
+        const introSlide = document.getElementById('slide-intro');
+
+        // FRASES DIARIAS (Día 1 = Lunes, Día 5 = Viernes)
+        const dailyQuotes = {
+            1: "INICIA LA SEMANA CON ENERGÍA MÁXIMA. [TARGET ACQUISITION: GOALS].", // Lunes
+            2: "MODULAR UPGRADE: ACTIVE. EVITA LA FATIGA Y MANTÉN LA DISCIPLINA.", // Martes
+            3: "PROTOCOLO DE RESISTENCIA INICIADO. PROTEGE TUS ARTICULACIONES.", // Miércoles
+            4: "MANTÉN LA VISTA EN EL OBJETIVO. [PROCESS: EFFORT EQUALS REWARD].", // Jueves
+            5: "[PROTOCOLO: RECOVERY] CIERRE SEMANAL. MILKSHAKE REPARADOR.", // Viernes
+        };
+
+
+        // =========================================================
+        // LÓGICA DE PROGRAMACIÓN
+        // =========================================================
+        
+        // ** CAMBIAR AQUÍ PARA PROBAR: 0=Dom, 1=Lun, 2=Mar, 3=Mie... 6=Sáb **
+        const today = 3; // <<-- MODO MIÉRCOLES FORZADO PARA PREVISUALIZACIÓN
+        // const today = new Date().getDay(); // 0: Domingo, 1: Lunes ... 6: Sábado
+        
+        let playlist = [];
+        let dailyOfferSlide = null;
+
+        // 1. Definir el contenido del slide introductorio
+        if (today === 0) { // DOMINGO
+            introTitle.innerHTML = "[ PROTOCOL: REST & REFLECTION ]";
+            introSubtitle.innerHTML = "SYSTEM MESSAGE: VERSÍCULO DEL DÍA";
+            introContent.innerHTML = `
+                <div class="text-center text-white">
+                    <p class="text-5xl font-black italic leading-relaxed text-cyber-cyan">
+                        "Este es el día que hizo el Señor; nos gozaremos y alegraremos en él."
+                    </p>
+                    <p class="text-3xl font-bold text-cyber-magenta mt-8">— SALMOS 118:24</p>
+                </div>
+            `;
+            // Aplicar estilo de Domingo (Fondo claro y texto negro)
+            introSlide.classList.remove('bg-grid');
+            introSlide.classList.add('bg-sunday-style');
+            introContent.classList.remove('border-cyber-magenta');
+            introContent.classList.add('border-brand-purple');
+            introTitle.classList.remove('neon-cyan');
+            introTitle.classList.add('text-brand-purple');
+            introSubtitle.classList.remove('text-gray-400');
+            introSubtitle.classList.add('text-gray-600');
+            
+
+        } else if (today === 6) { // SÁBADO
+            introTitle.innerHTML = "[ PROTOCOL: RECHARGE INITIATED ]";
+            introSubtitle.innerHTML = "STATUS: VICTORIA SEMANAL";
+            introContent.innerHTML = `
+                <div class="text-white text-center">
+                    <p class="text-5xl font-black leading-snug text-cyber-cyan">
+                        TERMINASTE LA SEMANA. TU DISCIPLINA MERECE EL MEJOR COMBUSTIBLE PARA RECUPERARTE.
+                    </p>
+                    <p class="text-4xl text-cyber-magenta font-medium mt-8">[ REQUEST: MILKSHAKE DE RECARGA ]</p>
+                </div>
+            `;
+            introSlide.classList.remove('bg-sunday-style'); 
+            introSlide.classList.add('bg-grid'); 
+            
+        } else if (today >= 1 && today <= 5) { // LUNES a VIERNES
+            
+            if (today === 1) { // LUNES
+                dailyOfferSlide = slides.mondayOffer;
+            } else if (today === 2) { // MARTES
+                dailyOfferSlide = slides.tuesdayOffer;
+            } else if (today === 3) { // MIÉRCOLES
+                dailyOfferSlide = slides.wednesdayOffer;
+            } else {
+                 dailyOfferSlide = null; 
+            }
+            
+            const quote = dailyQuotes[today];
+            introTitle.innerHTML = "[ PROTOCOL: DAILY ACTIVE ]";
+            introSubtitle.innerHTML = "SYSTEM MESSAGE: ENFOQUE";
+            introContent.innerHTML = `
+                <div class="text-white text-center">
+                    <p class="text-5xl font-black leading-snug animate-slide-in-up text-cyber-cyan">
+                        ${quote}
+                    </p>
+                    <p class="text-4xl text-cyber-magenta font-medium mt-8">[ EXECUTE ORDER: LA BARRA ]</p>
+                </div>
+            `;
+            introSlide.classList.remove('bg-sunday-style'); 
+            introSlide.classList.add('bg-grid'); 
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        // 3. Crear la playlist: INTRO + OFERTA DIARIA (si existe) + PRODUCTOS BASE
+        playlist = [slides.intro];
+
+        if (dailyOfferSlide) {
+            playlist.push(dailyOfferSlide);
         }
 
-        showSlide(currentSlide);
-        setInterval(nextSlide, intervalTime);
+        playlist = playlist.concat([
+            slides.prod1, // 25g Proteína
+            slides.prod2, // Toppings
+            slides.prod3, // Superfórmula
+            slides.cafe,  // Carta de Café
+            slides.prod4, // Branding
+        ]);
+
+        let currentIndex = 0;
+
+        function rotateSlides() {
+            // Ocultar todos
+            Object.values(slides).forEach(slide => slide.classList.remove('active'));
+            
+            // Mostrar actual
+            playlist[currentIndex].classList.add('active');
+
+            // Calcular siguiente índice
+            currentIndex = (currentIndex + 1) % playlist.length;
+        }
+
+        // Iniciar
+        rotateSlides();
+        setInterval(rotateSlides, slideDuration);
     </script>
 </body>
 </html>
+
 
