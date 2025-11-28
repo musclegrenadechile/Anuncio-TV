@@ -1,1 +1,276 @@
-# Anuncio-TV
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milkshake de Proteína - Anuncio Dinámico para TV</title>
+    <!-- Carga de Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts para tipografías más atractivas --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Configuración personalizada de Tailwind --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vibrant-pink': '#FF4081', // Rosa vibrante
+                        'sun-yellow': '#FFD700', // Dorado sol
+                        'ocean-blue': '#4FC3F7', // Azul cielo
+                        'deep-night': '#2C3E50', // Azul muy oscuro, casi negro
+                        'leaf-green': '#8BC34A', // Verde fresco
+                        'smoothie-purple': '#AB47BC', // Morado de batido
+                        'cream-white': '#F5F5DC', // Blanco cremoso
+                        'bar-orange': '#FF8C00', // Naranja del logo
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        heading: ['Bebas Neue', 'cursive'],
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-strong': 'pulse-strong 2s infinite ease-in-out',
+                        'gradient-shift': 'gradient-shift 10s ease infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-strong': {
+                            '0%, 100%': { transform: 'scale(1)', textShadow: '0 0 5px rgba(255,255,255,0.7)' },
+                            '50%': { transform: 'scale(1.05)', textShadow: '0 0 15px rgba(255,255,255,1)' },
+                        },
+                        'gradient-shift': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            background-color: #1a202c; /* Fondo oscuro principal */
+            color: white;
+        }
+        .tv-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Contenedor de slides */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Estilos base del slide */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Transición más larga */
+            background-size: 400% 400%; /* Para el degradado animado */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Fondos específicos para cada slide */
+        #slide-1 {
+            background: linear-gradient(45deg, #FF4081, #FFC107, #FF4081); /* Rosa, Amarillo */
+            animation: gradient-shift 10s ease infinite alternate;
+        }
+        #slide-2 {
+            background: linear-gradient(135deg, #4FC3F7, #AB47BC, #4FC3F7); /* Azul, Morado */
+            animation: gradient-shift 12s ease infinite alternate-reverse;
+        }
+        #slide-3 {
+            background: linear-gradient(90deg, #8BC34A, #2C3E50, #8BC34A); /* Verde, Azul Oscuro */
+            animation: gradient-shift 11s ease infinite;
+        }
+        #slide-4 {
+            background: linear-gradient(225deg, #FFC107, #FF4081, #FFC107); /* Amarillo, Rosa */
+            animation: gradient-shift 9s ease infinite alternate;
+        }
+
+        /* Estilos de texto */
+        .title {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.1em;
+            line-height: 0.9;
+        }
+        .price-bubble {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 3px solid white;
+            padding: 1.5rem 3rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .topping-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 1.5rem;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .topping-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .product-icon {
+            font-size: 8rem; /* Iconos grandes */
+            line-height: 1;
+            text-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="tv-screen">
+
+    <div class="slides-container">
+
+        <!-- SLIDE 1: Oferta Principal de Proteína y Precio ($3.500) --><div id="slide-1" class="slide active">
+            <h1 class="title text-8xl lg:text-[10rem] font-bold text-cream-white animate-float">
+                ¡MILKSHAKE <br> PROTEICO!
+            </h1>
+
+            <div class="my-12">
+                <p class="text-4xl lg:text-5xl font-semibold text-white mb-4">
+                    CON LA ENERGÍA DE
+                </p>
+                <p class="text-[10rem] lg:text-[14rem] font-extrabold leading-none text-sun-yellow animate-pulse-strong">
+                    25g
+                </p>
+                <p class="text-5xl lg:text-6xl font-bold text-white -mt-8">
+                    DE PROTEÍNA
+                </p>
+            </div>
+            
+            <div class="price-bubble">
+                <span class="text-4xl lg:text-5xl font-bold text-white mr-4">SÓLO</span>
+                <span class="text-7xl lg:text-8xl font-extrabold text-sun-yellow">$3.500</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Toppings y Llamada a la Personalización --><div id="slide-2" class="slide">
+            <h2 class="title text-8xl lg:text-9xl font-bold text-cream-white mb-16">
+                ¡PERSONALÍZALO!
+            </h2>
+
+            <p class="text-4xl lg:text-5xl font-semibold text-white mb-10">
+                Añade tu Topping por <span class="font-black text-vibrant-pink">$1.000</span>
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-4xl font-semibold text-white">
+                <div class="topping-item flex items-center justify-center space-x-4">
+                    <span class="text-6xl">🍓</span> <span>Frutilla</span>
+                </div>
+                <div class="topping-item flex items-center justify-center space-x-4">
+                    <span class="text-6xl">🥜</span> <span>Mantequilla de Maní</span>
+                </div>
+                <div class="topping-item flex items-center justify-center space-x-4">
+                    <span class="text-6xl">🫐</span> <span>Arándanos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Oferta Premium Proteína + Colágeno + NAD+ ($4.990) --><div id="slide-3" class="slide">
+            <h2 class="title text-8xl lg:text-9xl font-bold text-sun-yellow mb-12">
+                ¡SUPERFÓRMULA!
+            </h2>
+            <p class="text-5xl lg:text-6xl font-extrabold text-cream-white mb-10">
+                PROTEÍNA + COLÁGENO + NAD+
+            </p>
+            
+            <div class="flex justify-center items-center space-x-12 my-12">
+                <div class="text-center animate-float">
+                    <span class="product-icon text-cream-white">💪</span>
+                    <p class="text-3xl font-bold text-cream-white">PROTEÍNA</p>
+                </div>
+                <div class="text-center animate-float" style="animation-delay: 0.5s;">
+                    <span class="product-icon text-cream-white">✨</span>
+                    <p class="text-3xl font-bold text-cream-white">COLÁGENO</p>
+                </div>
+                <div class="text-center animate-float" style="animation-delay: 1s;">
+                    <span class="product-icon text-cream-white">⚡</span>
+                    <p class="text-3xl font-bold text-cream-white">NAD+</p>
+                </div>
+            </div>
+
+            <div class="price-bubble bg-ocean-blue border-ocean-blue">
+                <span class="text-4xl lg:text-5xl font-bold text-white mr-4">A SÓLO</span>
+                <span class="text-7xl lg:text-8xl font-extrabold text-cream-white">$4.990</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Llamada a la Acción Final (Ubicación/QR/Marca) --><div id="slide-4" class="slide">
+            <h2 class="title text-8xl lg:text-9xl font-bold text-vibrant-pink mb-16">
+                ¡VISÍTANOS HOY!
+            </h2>
+            <p class="text-5xl lg:text-6xl font-extrabold text-cream-white mb-8">
+                TU FUENTE DE ENERGÍA
+            </p>
+            
+            <!-- Nombre de la marca en lugar del QR/Logo --><div class="mt-16 bg-bar-orange/90 p-10 rounded-2xl shadow-xl w-[500px] h-[250px] mx-auto flex flex-col items-center justify-center border-4 border-cream-white">
+                <p class="title text-8xl font-black text-deep-night text-center leading-none">
+                    LA BARRA
+                </p>
+                <p class="text-3xl font-bold text-deep-night text-center mt-2">
+                    BY MUSCLE GRENADE
+                </p>
+            </div>
+            <p class="text-3xl lg:text-4xl font-semibold text-white mt-10">
+                [TU DIRECCIÓN / WEBSITE / RED SOCIAL]
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const intervalTime = 7000; // Alternar cada 7 segundos para más tiempo de visualización
+
+        function showSlide(index) {
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        showSlide(currentSlide);
+        setInterval(nextSlide, intervalTime);
+    </script>
+</body>
+</html>
