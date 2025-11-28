@@ -114,6 +114,14 @@
             background: linear-gradient(135deg, #101322, #4A2C82, #101322);
             animation: gradient-shift 12s ease infinite;
         }
+        #slide-4 {
+            background: radial-gradient(circle at center, #FF8C00, #101322 60%, #000000);
+            animation: gradient-shift 11s ease infinite alternate;
+        }
+        #slide-5 {
+            background: linear-gradient(135deg, #101322, #1E2435, #101322);
+            animation: gradient-shift 12s ease infinite alternate-reverse;
+        }
 
         .title {
             font-family: 'Bebas Neue', cursive;
@@ -221,7 +229,7 @@
                     </div>
                 </div>
 
-                <!-- Oferta 3: Otro suplemento -->
+                <!-- Oferta 3: Killer Pump -->
                 <div class="glass-card">
                     <div class="flex justify-between items-center mb-3">
                         <span class="tag-pill bg-vibrant-pink/90 text-cream-white">
@@ -251,7 +259,7 @@
             </p>
         </div>
 
-        <!-- SLIDE 2: CARTA CAFÉS CALIENTES (MÁS EXTENSA) -->
+        <!-- SLIDE 2: CARTA CAFÉS CALIENTES (SIN PROTEÍNA) -->
         <div id="slide-2" class="slide">
             <div class="text-center mb-8">
                 <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
@@ -291,10 +299,6 @@
                     <span class="text-2xl lg:text-3xl font-semibold">CAFÉ CON LECHE VEGETAL</span>
                     <span class="text-2xl lg:text-3xl font-bold">$3.200</span>
                 </div>
-                <div class="flex justify-between items-baseline mb-2 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">CAFÉ CON PROTEÍNA (HOT PROTEIN COFFEE)</span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
-                </div>
             </div>
 
             <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-3xl">
@@ -303,13 +307,13 @@
             </p>
         </div>
 
-        <!-- SLIDE 3: CARTA FRAPUCHINOS / SHAKES (MÁS EXTENSA) -->
+        <!-- SLIDE 3: CARTA SHAKES / FRAPUCHINOS (SOLO CON PROTEÍNA) -->
         <div id="slide-3" class="slide">
             <div class="text-center mb-8">
                 <p class="title text-4xl lg:text-5xl text-mint tracking-[0.3em] mb-2">
-                    SHAKES & FRAPUCHINOS
+                    SHAKES & FRAPUCHINOS PROTEIN
                 </p>
-                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
+            <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
                     CARTA PROTEICA
                 </h2>
             </div>
@@ -317,21 +321,27 @@
             <div class="glass-card max-w-4xl w-full">
                 <div class="flex justify-between items-baseline mb-3 text-cream-white">
                     <span class="text-2xl lg:text-3xl font-semibold">
-                        FRAPUCHINO PROTEIN · SABOR VOLCÁN DE CHOCOLATE
+                        FRAPUCHINO PROTEIN · VOLCÁN DE CHOCOLATE
                     </span>
                     <span class="text-2xl lg:text-3xl font-bold">$3.490</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        FRAPUCHINO PROTEIN · VAINILLA CREAM
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.490</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">
+                        FRAPUCHINO PROTEIN · COFFEE (CAFÉ FRÍO CON PROTEÍNA)
+                    </span>
+                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
                 </div>
                 <div class="flex justify-between items-baseline mb-3 text-cream-white">
                     <span class="text-2xl lg:text-3xl font-semibold">
                         MILKSHAKE PROTEICO CLÁSICO (VAINILLA / CHOCOLATE)
                     </span>
                     <span class="text-2xl lg:text-3xl font-bold">$3.500</span>
-                </div>
-                <div class="flex justify-between items-baseline mb-3 text-cream-white">
-                    <span class="text-2xl lg:text-3xl font-semibold">
-                        PROTEIN COFFEE FRÍO (CAFÉ + PROTEÍNA + HIELO)
-                    </span>
-                    <span class="text-2xl lg:text-3xl font-bold">$3.990</span>
                 </div>
                 <div class="flex justify-between items-baseline mb-3 text-cream-white">
                     <span class="text-2xl lg:text-3xl font-semibold">
@@ -355,7 +365,92 @@
 
             <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-3xl">
                 SÁBADO ES PARA DISFRUTAR… PERO TAMBIÉN PARA CUIDARTE.  
-                ELIGE TU SHAKE PROTEICO, ENTRENA DURO Y RECUPERA RICO 💪🥤
+                ELIGE TU FRAPUCHINO PROTEIN, ENTRENA DURO Y RECUPERA RICO 💪🥤
+            </p>
+        </div>
+
+        <!-- SLIDE 4: COMBO DEL DÍA FRAPUCHOCO PROTEIN -->
+        <div id="slide-4" class="slide">
+            <div class="text-center mb-6">
+                <p class="title text-4xl lg:text-5xl text-sun-yellow tracking-[0.3em] mb-2">
+                    COMBO DEL DÍA
+                </p>
+                <h2 class="title text-7xl lg:text-[8rem] text-cream-white animate-float">
+                    FRAPUCHOCO PROTEIN
+                </h2>
+            </div>
+
+            <div class="glass-card max-w-5xl w-full flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <p class="text-3xl lg:text-4xl font-extrabold text-cream-white mb-3">
+                        SUPER OFERTA ESPECIAL DE SÁBADO
+                    </p>
+                    <p class="text-2xl lg:text-3xl text-cream-white/90 mb-4">
+                        Frapuchino cremoso sabor <span class="text-sun-yellow font-bold">VOLCÁN DE CHOCOLATE</span> 
+                        con proteína, hielo y textura brutal para recargarte después del entrenamiento.
+                    </p>
+                    <p class="text-2xl lg:text-3xl text-cream-white mb-2 font-semibold">
+                        INCLUYE TOPPING A ELECCIÓN:
+                    </p>
+                    <ul class="text-2xl lg:text-3xl text-cream-white/95 space-y-1">
+                        <li>🍓 Frutilla</li>
+                        <li>🫐 Arándano</li>
+                        <li>🍌 Plátano</li>
+                    </ul>
+                    <p class="mt-4 text-xl lg:text-2xl text-cream-white/80">
+                        Pídeselo al mesón como: <span class="text-sun-yellow font-bold">“Combo FrapuChoco Protein”</span>.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center gap-6">
+                    <div class="price-pill bg-black/70 border-sun-yellow animate-pulse-soft">
+                        <span class="text-2xl lg:text-3xl text-cream-white font-semibold">SUPER OFERTA</span>
+                        <span class="text-5xl lg:text-6xl text-sun-yellow font-extrabold">$5.990.-</span>
+                    </div>
+                    <p class="text-2xl lg:text-3xl font-semibold text-cream-white text-center max-w-sm">
+                        SOLO POR HOY · CUPOS LIMITADOS · PREGUNTA EN EL MESÓN ☕🥤
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: SUPLEMENTOS DESTACADOS -->
+        <div id="slide-5" class="slide">
+            <div class="text-center mb-8">
+                <p class="title text-4xl lg:text-5xl text-soft-lilac tracking-[0.3em] mb-2">
+                    SUPLEMENTOS DESTACADOS
+                </p>
+                <h2 class="title text-7xl lg:text-[8rem] text-cream-white">
+                    MUSCLE GRENADE
+                </h2>
+            </div>
+
+            <div class="glass-card max-w-5xl w-full">
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">CREATINA MONOHIDRATO 300g</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$17.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">PROTEÍNA ARMY LABS 5 LB (SOLO)</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$49.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">KILLER PUMP · PRE-ENTRENO</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$21.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">BARRAS PROTEICAS (UNIDAD)</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$1.990</span>
+                </div>
+                <div class="flex justify-between items-baseline mb-3 text-cream-white">
+                    <span class="text-2xl lg:text-3xl font-semibold">MULTIVITAMÍNICO DIARIO</span>
+                    <span class="text-2xl lg:text-3xl font-bold">$12.990</span>
+                </div>
+            </div>
+
+            <p class="mt-8 text-2xl lg:text-3xl text-cream-white/85 text-center max-w-4xl">
+                HOY PUEDES EMPEZAR CON UN CAFÉ, CON UN FRAPUCHINO PROTEIN O CON UN SUPLEMENTO…  
+                LO IMPORTANTE ES QUE NO DEJES PARA EL LUNES EL CAMBIO QUE PUEDES HACER ESTE SÁBADO 💪🔥
             </p>
         </div>
     </div>
@@ -380,3 +475,4 @@
     </script>
 </body>
 </html>
+
