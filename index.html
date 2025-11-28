@@ -91,7 +91,7 @@
 
         // Definición de la Oferta del Día
         const DAILY_OFFER = {
-            // Day 4 = Jueves
+            // Day 4 = Jueves (Se mantiene por si el modo Jueves se reactiva)
             4: { 
                 title: 'COMBO FUERZA JUEVES', 
                 description: '¡Dale poder a tu mañana! 🏋️‍♂️',
@@ -102,29 +102,41 @@
                 price: '$4.990',
                 themeColor: 'cyber-red',
                 glowClass: 'offer-glow-red'
+            },
+            // Day 5 = Viernes (Nuevo Desayuno Homérico)
+            5: { 
+                title: 'DESAYUNO HOMÉRICO 🍩', 
+                description: '¡D\'OH! La energía para empezar el fin de semana.',
+                items: [
+                    '2 Donuts Glaseadas (¡Mmm...!)',
+                    'Capuccino Grande',
+                    'Completo Clásico (Opcional por +$1.000)'
+                ],
+                price: '$5.990',
+                themeColor: 'cyber-red',
+                glowClass: 'offer-glow-red'
             }
-            // Puedes añadir más ofertas para otros días aquí...
         };
 
         // Estructura de todos los slides del carrusel
         // Las propiedades 'render' son funciones que devuelven el HTML para el slide
         const SLIDES_DEFINITION = [
-            // 1. Slide Intro (Día de la semana)
+            // 1. Slide Intro (Día de la semana) - Estilo Homero
             {
                 id: 'intro',
                 render: (dayName) => `
                     <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-gray-900">
-                        <p class="text-3xl text-gray-400 mb-8 tracking-widest">💪 DULCE HOMERO TE MOTIVA</p>
-                        <h1 class="text-9xl md:text-[10rem] font-extrabold leading-tight text-cyber-blue text-shadow-custom">
-                            ¡A DOMINAR EL ${dayName.toUpperCase()}!
+                        <p class="text-3xl text-yellow-300 mb-8 tracking-widest">🧠 DULCE HOMERO TE MOTIVA... ¡A COMER!</p>
+                        <h1 class="text-9xl md:text-[10rem] font-extrabold leading-tight text-cyber-red text-shadow-custom">
+                            ¡Mmm... ${dayName.toUpperCase()}!
                         </h1>
                         <p class="text-4xl text-gray-300 mt-12 max-w-4xl">
-                            Energía limpia, sabor real. Tu combustible para el alto rendimiento está aquí.
+                            ¿Energía limpia? ¡Ñam! Tu combustible para la pereza productiva está aquí.
                         </p>
                     </div>
                 `
             },
-            // 2. Slide Oferta del Día (Solo si hay oferta para el día forzado)
+            // 2. Slide Oferta del Día (Combo Desayuno del Viernes)
             {
                 id: 'offer',
                 render: (offer) => {
@@ -153,13 +165,13 @@
                     `;
                 }
             },
-            // 3. Slide Batidos (Menú de Batidos Proteicos)
+            // 3. Slide Batidos (Menú de Batidos Proteicos) - Se mantiene el enfoque fitness
             {
                 id: 'batidos',
                 render: () => `
                     <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
                         <h2 class="text-6xl font-extrabold mb-12 text-cyber-blue text-shadow-custom tracking-wider border-b-4 border-cyber-blue pb-2">
-                            POTENCIA LÍQUIDA 🚀
+                            POTENCIA LÍQUIDA 🚀 (PARA CUANDO SIENTAS CULPA)
                         </h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
                             <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
@@ -193,60 +205,60 @@
                     </div>
                 `
             },
-            // 4. Slide Menú Sólido (Dulce Homero) - ¡EL NUEVO!
+            // 4. Slide Menú Sólido (Dulce Homero) - ¡MÁS ENFOQUE EN DULCES Y COMPLETOS!
             {
                 id: 'dulce-homero',
                 render: () => `
                     <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
                         <h2 class="text-7xl font-extrabold mb-10 text-cyber-red text-shadow-custom tracking-widest">
-                            DULCE HOMERO 🍩 SÓLIDO
+                            DULCE HOMERO 🍩 ¡Mmm... SÓLIDO!
                         </h2>
-                        <p class="text-3xl text-gray-300 mb-12">Cuando el hambre ataca, tenemos el plan B (y C).</p>
+                        <p class="text-3xl text-gray-300 mb-12">Cuando el hambre ataca y no quieres batidos.</p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
                             
+                            <!-- COMPLETOS GIGANTES (Hot dogs) -->
+                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
+                                <div class="flex items-center mb-4">
+                                    <span class="text-5xl mr-3 text-cyber-red">🌭</span>
+                                    <h3 class="text-3xl font-bold text-gray-100">COMPLETOS GIGANTES (EL CLÁSICO)</h3>
+                                </div>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Italiano (Tomate, Palta, Mayo)</li>
+                                    <li>• Dinámico (Chucrut, Cebolla, Ají)</li>
+                                    <li>• El Simple (Solo mostaza y ketchup)</li>
+                                </ul>
+                            </div>
+
+                            <!-- EL RINCÓN DULCE (Donuts y Brownies) -->
+                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
+                                <div class="flex items-center mb-4">
+                                    <span class="text-5xl mr-3 text-cyber-red">🍩</span>
+                                    <h3 class="text-3xl font-bold text-gray-100">EL RINCÓN DULCE</h3>
+                                </div>
+                                <ul class="text-lg text-gray-400 space-y-2">
+                                    <li>• Donuts Glaseadas de Temporada</li>
+                                    <li>• Brownie Triple Cacao (Calentito)</li>
+                                    <li>• Muffin de Manzana y Canela</li>
+                                </ul>
+                            </div>
+
                             <!-- SANDWICHES -->
                             <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
                                 <div class="flex items-center mb-4">
                                     <span class="text-5xl mr-3 text-cyber-red">🥪</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">SÁNDWICHES Y FOCACCIA</h3>
+                                    <h3 class="text-3xl font-bold text-gray-100">SÁNDWICHES RÁPIDOS</h3>
                                 </div>
                                 <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Pavo/Palta en Pan Integral</li>
-                                    <li>• Focaccia Caprese y Pesto</li>
-                                    <li>• Jamón de Campo y Queso Fundido</li>
-                                </ul>
-                            </div>
-
-                            <!-- COMPLETOS -->
-                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-5xl mr-3 text-cyber-red">🌭</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">COMPLETOS GIGANTES</h3>
-                                </div>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• El Clásico (Tomate, Mayo, Chucrut)</li>
-                                    <li>• Italiano (Tomate, Palta, Mayo)</li>
-                                    <li>• Americano (Cebolla, Mostaza, Ketchup)</li>
-                                </ul>
-                            </div>
-
-                            <!-- MUFFINS -->
-                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-5xl mr-3 text-cyber-red">🧁</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">MUFFINS & SNACKS</h3>
-                                </div>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Muffin de Arándano/Chocolate</li>
-                                    <li>• Brownie Triple Cacao</li>
-                                    <li>• Barra de Cereal Casera</li>
+                                    <li>• Queso Derretido y Tocino</li>
+                                    <li>• Focaccia de Pavo Ahumado</li>
+                                    <li>• Palta Mash y Huevo (Desayuno)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 `
             },
-            // 5. Slide Cafetería (Menú de Café)
+            // 5. Slide Cafetería (Menú de Café) - Se mantiene el look & feel anterior
             {
                 id: 'cafeteria',
                 render: () => `
@@ -275,16 +287,16 @@
                     </div>
                 `
             },
-            // 6. Slide Branding/CTA (Llamada a la Acción)
+            // 6. Slide Branding/CTA (Llamada a la Acción) - Estilo Homero
             {
                 id: 'branding',
                 render: () => `
                     <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-bg-dark">
                         <h1 class="text-8xl md:text-[8rem] font-black leading-none text-gray-100 mb-8">
-                            DULCE HOMERO
+                            DULCE HOMERO 🍩
                         </h1>
-                        <p class="text-4xl text-cyber-blue font-bold tracking-widest mb-12">
-                            TU FUERZA, TU SABOR.
+                        <p class="text-4xl text-cyber-red font-bold tracking-widest mb-12">
+                            ¡SI NO ESTÁ CUBIERTO DE AZÚCAR, NO ES COMIDA!
                         </p>
                         <div class="flex space-x-8 text-3xl text-gray-300">
                             <span class="flex items-center">
@@ -293,7 +305,7 @@
                             </span>
                             <span class="flex items-center">
                                 <svg class="w-8 h-8 mr-3 text-cyber-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                ¡Pregúntanos por planes de alimentación!
+                                ¡Pregúntanos por planes de alimentación... o de antojos!
                             </span>
                         </div>
                     </div>
@@ -309,8 +321,8 @@
         let currentSlideIndex = 0;
         const SLIDE_DURATION_MS = 8000; // 8 segundos por slide
 
-        // FORZAR MODO JUEVES (Day 4) como se solicitó
-        const forcedDay = 4; 
+        // FORZAR MODO VIERNES (Day 5) como se solicitó
+        const forcedDay = 5; 
         const today = DAYS[forcedDay];
         const offerForToday = DAILY_OFFER[forcedDay];
         
@@ -390,6 +402,7 @@
     </script>
 </body>
 </html>
+
 
 
 
