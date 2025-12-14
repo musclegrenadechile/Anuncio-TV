@@ -1,405 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dulce Homero - Menú Dinámico</title>
-    <!-- Carga de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configuración de Tailwind para colores Cyber y fuente Inter -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        // Colores de la marca para la línea de fitness/proteínas
-                        'cyber-blue': '#00E5FF',
-                        // Color de la marca para la nueva línea de comida sólida 'Dulce Homero'
-                        'cyber-red': '#FF413A',
-                        'bg-dark': '#0A0A0A',
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Estilos específicos para la pantalla -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        
-        body {
-            /* Asegura que el cuerpo ocupe toda la pantalla */
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        /* Ocultar las flechas del scrollbar para una presentación limpia */
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .slide {
-            /* Transición suave entre slides */
-            transition: opacity 0.8s ease-in-out;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muscle Grenade | La Barra Protein - Pantalla TV</title>
 
-        /* Estilo de la sombra para el texto principal */
-        .text-shadow-custom {
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px currentColor;
-        }
-        
-        /* Animación simple de brillo para las ofertas */
-        @keyframes pulse-glow-blue {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 229, 255, 0.7); }
-            50% { box-shadow: 0 0 20px rgba(0, 229, 255, 1); }
-        }
-        
-        @keyframes pulse-glow-red {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 65, 58, 0.7); }
-            50% { box-shadow: 0 0 20px rgba(255, 65, 58, 1); }
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-        .offer-glow-blue {
-            animation: pulse-glow-blue 3s infinite alternate;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mgBlack: "#0B0F1A",
+            mgCard: "#141A2B",
+            mgPink: "#FF4F81",
+            mgYellow: "#FFD54F",
+            mgOrange: "#FF8C00",
+            mgMint: "#A5F3CF",
+            mgBlue: "#A5D8FF",
+            mgLilac: "#D7B8FF",
+            cream: "#FFF8E1",
+          },
+          fontFamily: {
+            sans: ["Montserrat", "sans-serif"],
+            heading: ["Bebas Neue", "cursive"],
+          }
         }
+      }
+    }
+  </script>
 
-        .offer-glow-red {
-            animation: pulse-glow-red 3s infinite alternate;
-        }
-    </style>
+  <style>
+    body { margin: 0; background:#0B0F1A; color:#fff; font-family: Montserrat, sans-serif; }
+    .slides { position:relative; width:100%; height:100vh; overflow:hidden; }
+    .slide { position:absolute; inset:0; opacity:0; transition: opacity 1.2s ease; display:flex; align-items:center; justify-content:center; padding:48px; }
+    .slide.active { opacity:1; z-index:10; }
+    .bg1 { background: radial-gradient(circle at top, #FF4F81, #0B0F1A 60%, #000); }
+    .bg2 { background: linear-gradient(135deg, #0B0F1A, #1B2A4A, #0B0F1A); }
+    .bg3 { background: linear-gradient(135deg, #0B0F1A, #3B1C6D, #0B0F1A); }
+    .bg4 { background: radial-gradient(circle at center, #FF8C00, #0B0F1A 60%, #000); }
+    .bg5 { background: linear-gradient(135deg, #0B0F1A, #141A2B, #0B0F1A); }
+
+    .title { font-family: "Bebas Neue", cursive; letter-spacing: .16em; text-transform: uppercase; text-shadow: 0 8px 22px rgba(0,0,0,.55); }
+    .card { background: rgba(20,26,43,.78); border: 1px solid rgba(255,255,255,.12); border-radius: 28px; box-shadow: 0 18px 40px rgba(0,0,0,.6); backdrop-filter: blur(12px); }
+    .pill { border-radius: 9999px; padding: .45rem 1.1rem; font-weight: 800; letter-spacing:.06em; }
+    .strike { text-decoration: line-through; opacity:.75; }
+  </style>
 </head>
-<body class="bg-bg-dark text-gray-100 font-sans">
 
-    <!-- Contenedor principal del carrusel -->
-    <div id="carousel-container" class="relative w-full h-full">
-        <!-- Los slides se insertarán aquí por JavaScript -->
-    </div>
+<body>
+  <div class="slides">
 
-    <script type="module">
-        // ===============================================
-        // DATOS DEL MENÚ Y CONFIGURACIÓN
-        // ===============================================
-        
-        // Días de la semana para mensajes de bienvenida
-        const DAYS = [
-            'Domingo', 'Lunes', 'Martes', 'Miércoles', 
-            'Jueves', 'Viernes', 'Sábado'
-        ];
+    <!-- SLIDE 1: Branding + frase -->
+    <section class="slide active bg5">
+      <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="text-left">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="assets/img/logo_musclegrenade.png" alt="Muscle Grenade" class="h-16 w-auto">
+            <div class="h-10 w-px bg-white/25"></div>
+            <img src="assets/img/logo_labarra.png" alt="La Barra Protein" class="h-14 w-auto">
+          </div>
 
-        // Definición de la Oferta del Día
-        const DAILY_OFFER = {
-            // Day 4 = Jueves (Se mantiene por si el modo Jueves se reactiva)
-            4: { 
-                title: 'COMBO FUERZA JUEVES', 
-                description: '¡Dale poder a tu mañana! 🏋️‍♂️',
-                items: [
-                    'Muffin Integral Proteico (Sabor a elección)',
-                    'Café Americano Doble Shot'
-                ],
-                price: '$4.990',
-                themeColor: 'cyber-red',
-                glowClass: 'offer-glow-red'
-            },
-            // Day 5 = Viernes (Nuevo Desayuno Homérico)
-            5: { 
-                title: 'DESAYUNO HOMÉRICO 🍩', 
-                description: '¡D\'OH! La energía para empezar el fin de semana.',
-                items: [
-                    '2 Donuts Glaseadas (¡Mmm...!)',
-                    'Capuccino Grande',
-                    'Completo Clásico (Opcional por +$1.000)'
-                ],
-                price: '$5.990',
-                themeColor: 'cyber-red',
-                glowClass: 'offer-glow-red'
-            }
-        };
+          <h1 class="title text-6xl lg:text-7xl text-cream mb-4">SÁBADO · OFERTAS Y CAFETERÍA</h1>
+          <p class="text-2xl lg:text-3xl font-extrabold text-mgYellow mb-4">
+            “La disciplina se nota cuando nadie está mirando.”
+          </p>
+          <p class="text-xl lg:text-2xl text-white/85">
+            Suplementos + barra proteica + frapuchinos con proteína. Todo en un mismo lugar.
+          </p>
 
-        // Estructura de todos los slides del carrusel
-        // Las propiedades 'render' son funciones que devuelven el HTML para el slide
-        const SLIDES_DEFINITION = [
-            // 1. Slide Intro (Día de la semana) - Estilo Homero
-            {
-                id: 'intro',
-                render: (dayName) => `
-                    <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-gray-900">
-                        <p class="text-3xl text-yellow-300 mb-8 tracking-widest">🧠 DULCE HOMERO TE MOTIVA... ¡A COMER!</p>
-                        <h1 class="text-9xl md:text-[10rem] font-extrabold leading-tight text-cyber-red text-shadow-custom">
-                            ¡Mmm... ${dayName.toUpperCase()}!
-                        </h1>
-                        <p class="text-4xl text-gray-300 mt-12 max-w-4xl">
-                            ¿Energía limpia? ¡Ñam! Tu combustible para la pereza productiva está aquí.
-                        </p>
-                    </div>
-                `
-            },
-            // 2. Slide Oferta del Día (Combo Desayuno del Viernes)
-            {
-                id: 'offer',
-                render: (offer) => {
-                    if (!offer) return ''; // No renderizar si no hay oferta
-                    return `
-                        <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-bg-dark border-4 border-${offer.themeColor}">
-                            <div class="p-10 rounded-xl ${offer.glowClass} max-w-4xl w-full">
-                                <p class="text-3xl text-gray-400 mb-4 tracking-widest">${offer.description}</p>
-                                <h1 class="text-7xl font-bold mb-10 text-${offer.themeColor} text-shadow-custom uppercase">
-                                    ${offer.title}
-                                </h1>
-                                <div class="space-y-4 mb-12">
-                                    ${offer.items.map(item => `
-                                        <div class="flex items-center justify-center text-3xl text-gray-200">
-                                            <svg class="w-8 h-8 mr-4 text-${offer.themeColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                            <span>${item}</span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                <div class="bg-gray-900 p-6 rounded-lg">
-                                    <span class="text-2xl text-gray-400 line-through mr-4">Precio Regular</span>
-                                    <span class="text-6xl font-extrabold text-${offer.themeColor}">${offer.price}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            },
-            // 3. Slide Batidos (Menú de Batidos Proteicos) - Se mantiene el enfoque fitness
-            {
-                id: 'batidos',
-                render: () => `
-                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
-                        <h2 class="text-6xl font-extrabold mb-12 text-cyber-blue text-shadow-custom tracking-wider border-b-4 border-cyber-blue pb-2">
-                            POTENCIA LÍQUIDA 🚀 (PARA CUANDO SIENTAS CULPA)
-                        </h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
-                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
-                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">25G WHEY ISOLATE</h3>
-                                <p class="text-xl text-gray-300 mb-4">La dosis perfecta de proteína de rápida absorción.</p>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Vainilla Cero Azúcar</li>
-                                    <li>• Chocolate Intenso</li>
-                                    <li>• Frutos Rojos</li>
-                                </ul>
-                            </div>
-                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
-                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">TOPPINGS Y BOOSTERS</h3>
-                                <p class="text-xl text-gray-300 mb-4">Personaliza tu batido al máximo.</p>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Creatina Monohidrato (+5G)</li>
-                                    <li>• Leche de Almendras/Coco</li>
-                                    <li>• Mantequilla de Maní Natural</li>
-                                </ul>
-                            </div>
-                            <div class="bg-gray-900 p-8 rounded-xl border border-cyber-blue hover:shadow-2xl hover:shadow-cyber-blue/50 transition duration-300">
-                                <h3 class="text-4xl font-bold mb-3 text-cyber-blue">SUPERFÓRMULA PRE-WORK</h3>
-                                <p class="text-xl text-gray-300 mb-4">Máxima energía y enfoque para entrenamientos épicos.</p>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Beta Alanina y Taurina</li>
-                                    <li>• Sabor Limón-Jengibre</li>
-                                    <li>• SIN AZÚCAR, SIN CRASH</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            // 4. Slide Menú Sólido (Dulce Homero) - ¡MÁS ENFOQUE EN DULCES Y COMPLETOS!
-            {
-                id: 'dulce-homero',
-                render: () => `
-                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-950">
-                        <h2 class="text-7xl font-extrabold mb-10 text-cyber-red text-shadow-custom tracking-widest">
-                            DULCE HOMERO 🍩 ¡Mmm... SÓLIDO!
-                        </h2>
-                        <p class="text-3xl text-gray-300 mb-12">Cuando el hambre ataca y no quieres batidos.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
-                            
-                            <!-- COMPLETOS GIGANTES (Hot dogs) -->
-                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-5xl mr-3 text-cyber-red">🌭</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">COMPLETOS GIGANTES (EL CLÁSICO)</h3>
-                                </div>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Italiano (Tomate, Palta, Mayo)</li>
-                                    <li>• Dinámico (Chucrut, Cebolla, Ají)</li>
-                                    <li>• El Simple (Solo mostaza y ketchup)</li>
-                                </ul>
-                            </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="pill bg-mgOrange text-mgBlack">MUSCLE GRENADE</span>
+            <span class="pill bg-mgMint text-mgBlack">LA BARRA PROTEIN</span>
+            <span class="pill bg-mgPink text-white">OFERTAS DEL DÍA</span>
+          </div>
+        </div>
 
-                            <!-- EL RINCÓN DULCE (Donuts y Brownies) -->
-                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-5xl mr-3 text-cyber-red">🍩</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">EL RINCÓN DULCE</h3>
-                                </div>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Donuts Glaseadas de Temporada</li>
-                                    <li>• Brownie Triple Cacao (Calentito)</li>
-                                    <li>• Muffin de Manzana y Canela</li>
-                                </ul>
-                            </div>
+        <div class="card p-8">
+          <p class="title text-5xl text-mgYellow mb-4">Hoy recomendado</p>
+          <div class="grid grid-cols-2 gap-6 items-center">
+            <div>
+              <p class="text-2xl font-black mb-2">Combo FrapuChoco Protein</p>
+              <p class="text-lg text-white/85 mb-3">Incluye topping a elección</p>
+              <p class="text-4xl font-black text-mgYellow">$5.990.-</p>
+            </div>
+            <img src="assets/img/frapuchoco.png" alt="FrapuChoco Protein" class="w-full max-w-[260px] mx-auto">
+          </div>
+        </div>
+      </div>
+    </section>
 
-                            <!-- SANDWICHES -->
-                            <div class="bg-gray-900 p-8 rounded-xl border-t-4 border-cyber-red">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-5xl mr-3 text-cyber-red">🥪</span>
-                                    <h3 class="text-3xl font-bold text-gray-100">SÁNDWICHES RÁPIDOS</h3>
-                                </div>
-                                <ul class="text-lg text-gray-400 space-y-2">
-                                    <li>• Queso Derretido y Tocino</li>
-                                    <li>• Focaccia de Pavo Ahumado</li>
-                                    <li>• Palta Mash y Huevo (Desayuno)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                `
-            },
-            // 5. Slide Cafetería (Menú de Café) - Se mantiene el look & feel anterior
-            {
-                id: 'cafeteria',
-                render: () => `
-                    <div class="h-full flex flex-col items-center justify-center p-10 bg-gray-900">
-                        <h2 class="text-6xl font-extrabold mb-12 text-yellow-300 text-shadow-custom tracking-wider border-b-4 border-yellow-300 pb-2">
-                            EL RITUAL DEL CAFÉ ☕
-                        </h2>
-                        <div class="grid grid-cols-2 gap-x-20 gap-y-8 max-w-4xl w-full">
-                            ${[
-                                { name: 'Americano', price: '$2.200' },
-                                { name: 'Espresso', price: '$1.800' },
-                                { name: 'Latte', price: '$2.800' },
-                                { name: 'Capuccino', price: '$2.900' },
-                                { name: 'Mocaccino', price: '$3.200' },
-                                { name: 'Chocolate Caliente', price: '$2.500' },
-                            ].map(item => `
-                                <div class="flex justify-between items-end border-b border-gray-700 pb-1">
-                                    <span class="text-3xl text-gray-200">${item.name}</span>
-                                    <span class="text-2xl font-semibold text-yellow-300">${item.price}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <p class="text-2xl text-gray-400 mt-12 italic">
-                            Disponible con Leche Vegetal (Almendra/Soya) +$500
-                        </p>
-                    </div>
-                `
-            },
-            // 6. Slide Branding/CTA (Llamada a la Acción) - Estilo Homero
-            {
-                id: 'branding',
-                render: () => `
-                    <div class="h-full flex flex-col justify-center items-center text-center p-10 bg-bg-dark">
-                        <h1 class="text-8xl md:text-[8rem] font-black leading-none text-gray-100 mb-8">
-                            DULCE HOMERO 🍩
-                        </h1>
-                        <p class="text-4xl text-cyber-red font-bold tracking-widest mb-12">
-                            ¡SI NO ESTÁ CUBIERTO DE AZÚCAR, NO ES COMIDA!
-                        </p>
-                        <div class="flex space-x-8 text-3xl text-gray-300">
-                            <span class="flex items-center">
-                                <svg class="w-8 h-8 mr-3 text-cyber-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                                @DulceHomeroFit
-                            </span>
-                            <span class="flex items-center">
-                                <svg class="w-8 h-8 mr-3 text-cyber-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                ¡Pregúntanos por planes de alimentación... o de antojos!
-                            </span>
-                        </div>
-                    </div>
-                `
-            }
-        ];
+    <!-- SLIDE 2: Ofertas suplementos -->
+    <section class="slide bg1">
+      <div class="max-w-6xl w-full">
+        <h2 class="title text-6xl lg:text-7xl text-cream text-center mb-10">OFERTAS DEL DÍA</h2>
 
-        // ===============================================
-        // LÓGICA DEL CARRUSEL
-        // ===============================================
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        const carouselContainer = document.getElementById('carousel-container');
-        let currentSlideIndex = 0;
-        const SLIDE_DURATION_MS = 8000; // 8 segundos por slide
+          <div class="card p-7">
+            <div class="flex items-center justify-between mb-3">
+              <span class="pill bg-mgBlue text-mgBlack">OMEGA CLÍNICA</span>
+              <span class="text-white/75 font-semibold">NAD+ 100 servicios</span>
+            </div>
+            <div class="grid grid-cols-2 gap-6 items-center">
+              <div>
+                <p class="text-2xl font-black mb-2">NAD+ Omega Clínica</p>
+                <p class="text-lg strike mb-1">Antes $34.990.-</p>
+                <p class="text-4xl font-black text-mgYellow">Ahora $25.000.-</p>
+              </div>
+              <img src="assets/img/nad_omega.png" alt="NAD+ Omega" class="w-full max-w-[220px] mx-auto">
+            </div>
+          </div>
 
-        // FORZAR MODO VIERNES (Day 5) como se solicitó
-        const forcedDay = 5; 
-        const today = DAYS[forcedDay];
-        const offerForToday = DAILY_OFFER[forcedDay];
-        
-        let allSlides = [];
+          <div class="card p-7">
+            <div class="flex items-center justify-between mb-3">
+              <span class="pill bg-mgMint text-mgBlack">PACK FUERZA</span>
+              <span class="text-white/75 font-semibold">Army Labs</span>
+            </div>
+            <div class="grid grid-cols-2 gap-6 items-center">
+              <div>
+                <p class="text-2xl font-black mb-2">Proteína 5 lb + Creatina</p>
+                <p class="text-lg strike mb-1">Antes $79.990.-</p>
+                <p class="text-4xl font-black text-mgYellow">Ahora $54.990.-</p>
+              </div>
+              <img src="assets/img/army_pack.png" alt="Army Pack" class="w-full max-w-[220px] mx-auto">
+            </div>
+          </div>
 
-        // Función para inicializar y construir la secuencia de slides
-        const initializeSlides = () => {
-            // 1. INTRO
-            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'intro'));
-            
-            // 2. OFERTA DEL DÍA (Solo si existe)
-            if (offerForToday) {
-                allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'offer'));
-            }
+          <div class="card p-7">
+            <div class="flex items-center justify-between mb-3">
+              <span class="pill bg-mgPink text-white">PRE-ENTRENO</span>
+              <span class="text-white/75 font-semibold">Killer Pump</span>
+            </div>
+            <div class="grid grid-cols-2 gap-6 items-center">
+              <div>
+                <p class="text-2xl font-black mb-2">Killer Pump</p>
+                <p class="text-lg strike mb-1">Antes $29.990.-</p>
+                <p class="text-4xl font-black text-mgYellow">Ahora $21.990.-</p>
+              </div>
+              <img src="assets/img/killer_pump.png" alt="Killer Pump" class="w-full max-w-[220px] mx-auto">
+            </div>
+          </div>
 
-            // 3. BATIDOS
-            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'batidos'));
-            
-            // 4. MENÚ SÓLIDO (Dulce Homero)
-            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'dulce-homero'));
+        </div>
 
-            // 5. CAFETERÍA
-            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'cafeteria'));
+        <p class="text-center text-2xl lg:text-3xl mt-10 text-white/90">
+          Pide las ofertas en el mesón 💬
+        </p>
+      </div>
+    </section>
 
-            // 6. BRANDING
-            allSlides.push(SLIDES_DEFINITION.find(s => s.id === 'branding'));
-        };
+    <!-- SLIDE 3: Cafetería (solo café normal) -->
+    <section class="slide bg2">
+      <div class="max-w-5xl w-full">
+        <h2 class="title text-6xl lg:text-7xl text-cream text-center mb-10">CAFETERÍA</h2>
 
-        // Función que genera y muestra el slide actual
-        const showSlide = (index) => {
-            carouselContainer.innerHTML = '';
-            
-            // Asegura que el índice esté dentro de los límites
-            if (index < 0 || index >= allSlides.length) {
-                index = 0;
-                currentSlideIndex = 0;
-            }
+        <div class="card p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-2xl lg:text-3xl">
+            <div class="flex justify-between"><span class="font-semibold">Espresso</span><span class="font-black">$2.000</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Americano</span><span class="font-black">$2.500</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Latte</span><span class="font-black">$2.800</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Capuchino</span><span class="font-black">$2.900</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Mocha</span><span class="font-black">$3.200</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Café doble</span><span class="font-black">$3.000</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Leche vegetal</span><span class="font-black">+$300</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Extra shot</span><span class="font-black">+$500</span></div>
+          </div>
+        </div>
 
-            const slideData = allSlides[index];
-            let contentHTML = '';
+        <p class="text-center text-2xl lg:text-3xl mt-10 text-white/85">
+          Ideal para acompañar tu día (sin proteína en café).
+        </p>
+      </div>
+    </section>
 
-            // Renderiza el contenido del slide usando la función 'render'
-            if (slideData.id === 'intro') {
-                contentHTML = slideData.render(today);
-            } else if (slideData.id === 'offer') {
-                contentHTML = slideData.render(offerForToday);
-            } else {
-                contentHTML = slideData.render();
-            }
+    <!-- SLIDE 4: Frapuchinos con proteína -->
+    <section class="slide bg3">
+      <div class="max-w-6xl w-full">
+        <h2 class="title text-6xl lg:text-7xl text-cream text-center mb-10">FRAPUCHINOS CON PROTEÍNA</h2>
 
-            // Crea el elemento div para el slide
-            const slideElement = document.createElement('div');
-            slideElement.className = 'slide absolute top-0 left-0 w-full h-full opacity-0';
-            slideElement.innerHTML = contentHTML;
-            carouselContainer.appendChild(slideElement);
+        <div class="card p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-2xl lg:text-3xl">
+            <div class="flex justify-between"><span class="font-semibold">FrapuChoco Protein (Volcán de Chocolate)</span><span class="font-black">$3.490</span></div>
+            <div class="flex justify-between"><span class="font-semibold">FrapuVainilla Protein</span><span class="font-black">$3.490</span></div>
+            <div class="flex justify-between"><span class="font-semibold">FrapuFrutilla Protein</span><span class="font-black">$3.990</span></div>
+            <div class="flex justify-between"><span class="font-semibold">FrapuPlátano Protein</span><span class="font-black">$3.990</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Smoothie Energía (Frutilla/Plátano + Protein)</span><span class="font-black">$3.990</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Smoothie Detox Verde (+ Protein)</span><span class="font-black">$3.990</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Shot extra de proteína</span><span class="font-black">$1.000</span></div>
+            <div class="flex justify-between"><span class="font-semibold">Topping (Arándano / Frutilla / Plátano)</span><span class="font-black">+$1.000</span></div>
+          </div>
+        </div>
 
-            // Fuerza el reflow y luego cambia la opacidad para la transición
-            void slideElement.offsetWidth;
-            slideElement.style.opacity = '1';
-        };
+        <p class="text-center text-2xl lg:text-3xl mt-10 text-white/85">
+          Pide tu frapu en el mesón 🥤💪
+        </p>
+      </div>
+    </section>
 
-        // Función para avanzar al siguiente slide
-        const nextSlide = () => {
-            currentSlideIndex = (currentSlideIndex + 1) % allSlides.length;
-            showSlide(currentSlideIndex);
-        };
+    <!-- SLIDE 5: Combo del día -->
+    <section class="slide bg4">
+      <div class="max-w-6xl w-full text-center">
+        <p class="title text-4xl lg:text-5xl text-mgYellow tracking-[0.35em] mb-3">COMBO DEL DÍA</p>
+        <h2 class="title text-7xl lg:text-[8rem] text-cream mb-8">FRAPUCHOCO PROTEIN</h2>
 
-        // Inicia el carrusel
-        window.onload = () => {
-            initializeSlides();
-            showSlide(currentSlideIndex); // Muestra el primer slide inmediatamente
-            
-            // Inicia la rotación automática
-            setInterval(nextSlide, SLIDE_DURATION_MS);
-        };
+        <div class="card p-10 max-w-5xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div class="text-left">
+              <p class="text-3xl lg:text-4xl font-black mb-3">Super oferta</p>
+              <p class="text-2xl lg:text-3xl text-white/90 mb-5">
+                Incluye topping a elección: <span class="text-mgYellow font-black">Arándano · Frutilla · Plátano</span>
+              </p>
+              <p class="text-5xl lg:text-6xl font-black text-mgYellow">$5.990.-</p>
+              <p class="mt-4 text-xl lg:text-2xl text-white/80">
+                Pídelo como: <span class="font-black text-cream">“Combo FrapuChoco Protein”</span>
+              </p>
+            </div>
+            <img src="assets/img/frapuchoco.png" alt="FrapuChoco" class="w-full max-w-[340px] mx-auto">
+          </div>
+        </div>
 
-    </script>
+        <p class="mt-10 text-2xl lg:text-3xl text-white/90">
+          Muscle Grenade · La Barra Protein
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    let i = 0;
+    const intervalMs = 9000;
+
+    function show(idx){
+      slides.forEach(s => s.classList.remove("active"));
+      slides[idx].classList.add("active");
+    }
+
+    show(i);
+    setInterval(() => {
+      i = (i + 1) % slides.length;
+      show(i);
+    }, intervalMs);
+  </script>
 </body>
 </html>
 
