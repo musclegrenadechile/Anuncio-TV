@@ -1,385 +1,281 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muscle Grenade | Ofertas + Promos + Cafetería</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bg: "#0B0F1A",
-            card: "#141A2B",
-            yellow: "#FFD54F",
-            orange: "#FF8C00",
-            pink: "#FF4F81",
-            mint: "#A5F3CF",
-            blue: "#A5D8FF",
-            lilac: "#D7B8FF",
-            cream: "#FFF8E1",
-          },
-          fontFamily: {
-            heading: ["Bebas Neue", "cursive"],
-            sans: ["Montserrat", "sans-serif"],
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Barra Protein | Menú Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #d4ff00; /* Color lima/eléctrico para resaltar lo fitness */
+            --bg: #0a0a0a;
+            --card-bg: rgba(25, 25, 25, 0.95);
+            --text: #ffffff;
+            --muted: #a0a0a0;
         }
-      }
-    }
-  </script>
 
-  <style>
-    html, body { width:100%; height:100%; margin:0; overflow:hidden; background:#0B0F1A; color:#fff; font-family: Montserrat, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Slider */
-    .slides { position:relative; width:100vw; height:100vh; overflow:hidden; }
-    .slide { position:absolute; inset:0; opacity:0; transform: scale(1.01); transition: opacity 1.15s ease, transform 1.15s ease; display:flex; align-items:center; justify-content:center; padding:64px; }
-    .slide.active { opacity:1; transform: scale(1); z-index:10; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at 50% -20%, #222, #0a0a0a);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
 
-    /* Backgrounds */
-    .bgA { background: radial-gradient(circle at top, rgba(255,79,129,.38), rgba(11,15,26,1) 55%, rgba(0,0,0,1)); }
-    .bgB { background: radial-gradient(circle at center, rgba(255,140,0,.42), rgba(11,15,26,1) 58%, rgba(0,0,0,1)); }
-    .bgC { background: radial-gradient(circle at top right, rgba(165,216,255,.32), rgba(11,15,26,1) 60%, rgba(0,0,0,1)); }
-    .bgD { background: radial-gradient(circle at bottom left, rgba(165,243,207,.32), rgba(11,15,26,1) 60%, rgba(0,0,0,1)); }
-    .bgE { background: linear-gradient(135deg, #0B0F1A, #141A2B, #0B0F1A); }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-    /* Cards */
-    .card {
-      background: rgba(20,26,43,.84);
-      border-radius: 34px;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 22px 55px rgba(0,0,0,.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+        .logo-area h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            letter-spacing: -2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            line-height: 1;
+        }
 
-    .title {
-      font-family: "Bebas Neue", cursive;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      text-shadow: 0 10px 26px rgba(0,0,0,.65);
-    }
+        .logo-area p {
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 10px;
+        }
 
-    /* Sizes for TV 55" */
-    .hero { font-size: clamp(56px, 6vw, 120px); line-height: .92; }
-    .sub  { font-size: clamp(22px, 2.1vw, 44px); line-height: 1.08; }
-    .price{ font-size: clamp(72px, 7vw, 150px); line-height: .9; }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: auto;
+        }
 
-    /* Animations */
-    .floaty { animation: floaty 3.8s ease-in-out infinite; }
-    @keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-10px);} }
+        .category {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
-    .glow { animation: glow 2.6s ease-in-out infinite; }
-    @keyframes glow { 0%,100%{ filter: drop-shadow(0 0 0 rgba(255,213,79,0)); } 50%{ filter: drop-shadow(0 0 22px rgba(255,213,79,.35)); } }
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
 
-    .cta { animation: cta 1.9s ease-in-out infinite; }
-    @keyframes cta { 0%,100%{ transform: translateY(0); opacity:.92;} 50%{ transform: translateY(-4px); opacity:1;} }
+        .category h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+        }
 
-    .chip {
-      border-radius: 9999px;
-      padding: .45rem 1.1rem;
-      font-weight: 900;
-      letter-spacing: .06em;
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.14);
-    }
-  </style>
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+        }
+
+        .item-info { flex: 1; }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-left: 15px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+            margin: 15px 0;
+            opacity: 0.3;
+        }
+
+        .footer-note {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: var(--accent);
+            color: #000;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .extra-badge {
+            display: inline-block;
+            background: #333;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            margin: 5px 5px 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .logo-area h1 { font-size: 2.5rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="slides">
 
-    <!-- 1) FRASE DEL DÍA -->
-    <section class="slide active bgE">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-pink font-black">PANTALLA OFICIAL</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">HOY</span></div>
-        </div>
+<header>
+    <div class="logo-area">
+        <h1>LA BARRA PROTEIN</h1>
+        <p>Fuel Your Performance</p>
+    </div>
+</header>
 
-        <div class="card p-14 text-center">
-          <p class="title text-yellow text-4xl lg:text-5xl mb-6">FRASE DEL DÍA</p>
-          <p class="sub font-extrabold text-cream">
-            “No se trata de motivación. Se trata de disciplina.
-            Hoy haces lo que toca… y mañana agradeces el resultado.”
-          </p>
-
-          <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <span class="chip text-cream text-xl">Disciplina &gt; Excusas</span>
-            <span class="chip text-cream text-xl">Constancia diaria</span>
-            <span class="chip text-cream text-xl">Progreso real</span>
-          </div>
-        </div>
-
-        <p class="mt-10 text-center text-3xl lg:text-4xl font-black text-cream/90 cta">
-          HOY SE VIENE A GANAR 💪
-        </p>
-      </div>
-    </section>
-
-    <!-- 2) OFERTA 1 -->
-    <section class="slide bgA">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-yellow font-black">OFERTA 1</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">STOCK LIMITADO</span></div>
-        </div>
-
-        <div class="card p-14">
-          <p class="title hero text-cream mb-8 floaty">PACK FUERZA</p>
-          <p class="sub font-extrabold text-cream mb-5">PROTEÍNA ARMY LABS 5 LIBRAS</p>
-          <p class="sub font-extrabold text-cream mb-10">+ CREATINA ULTIMATE NUTRITION 300 g</p>
-
-          <div class="flex items-center justify-center mt-6">
-            <div class="px-10 py-6 rounded-full border-2 border-white/45 bg-black/35 glow">
-              <span class="text-3xl lg:text-4xl font-black text-cream mr-5">POR SOLO</span>
-              <span class="price font-black text-yellow">$54.990.-</span>
+<div class="menu-grid">
+    <div class="category">
+        <h2>Hot Coffee Grano</h2>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Café Espresso</span>
+                <span class="item-desc">Doble shot de energía pura [cite: 2]</span>
             </div>
-          </div>
-
-          <p class="mt-10 text-center text-3xl lg:text-4xl font-black text-cream cta">
-            PÍDELO EN EL MESÓN 💬
-          </p>
+            <span class="price">$2.500</span>
         </div>
-      </div>
-    </section>
-
-    <!-- 3) OFERTA 2 -->
-    <section class="slide bgC">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-yellow font-black">OFERTA 2</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">PROMO RÁPIDA</span></div>
-        </div>
-
-        <div class="card p-14 text-center">
-          <p class="title hero text-cream mb-10 floaty">BARRA PROTEICA</p>
-          <p class="sub font-extrabold text-cream mb-4">BARRA DE PROTEÍNA</p>
-          <p class="sub font-extrabold text-cream mb-10">PREMIUM NUTRITION FACTORY</p>
-
-          <div class="inline-flex items-baseline gap-5 px-10 py-6 rounded-full border-2 border-white/45 bg-black/35 glow">
-            <span class="text-3xl lg:text-4xl font-black text-cream">POR SOLO</span>
-            <span class="price font-black text-yellow">$2.990.-</span>
-          </div>
-
-          <p class="mt-10 text-3xl lg:text-4xl font-black text-cream cta">
-            IDEAL PARA LLEVAR 🚀
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4) OFERTA 3 -->
-    <section class="slide bgD">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-yellow font-black">OFERTA 3</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">PACK RECUPERACIÓN</span></div>
-        </div>
-
-        <div class="card p-14">
-          <p class="title hero text-cream mb-8 floaty">RECUPERA MEJOR</p>
-          <p class="sub font-extrabold text-cream mb-5">COLÁGENO</p>
-          <p class="sub font-extrabold text-cream mb-10">+ PROTEÍNA ARMY LABS 5 LIBRAS</p>
-
-          <div class="flex items-center justify-center mt-6">
-            <div class="px-10 py-6 rounded-full border-2 border-white/45 bg-black/35 glow">
-              <span class="text-3xl lg:text-4xl font-black text-cream mr-5">EN</span>
-              <span class="price font-black text-yellow">$64.990.-</span>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Americano</span>
+                <span class="item-desc">Café + Agua [cite: 4]</span>
             </div>
-          </div>
-
-          <p class="mt-10 text-center text-3xl lg:text-4xl font-black text-cream cta">
-            PÍDELO EN EL MESÓN 🔥
-          </p>
+            <span class="price">$2.800</span>
         </div>
-      </div>
-    </section>
-
-    <!-- 5) PROMO RELLENA TU SHAKER (imagen: rellena.jpg en raíz) -->
-    <section class="slide bgB">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-yellow font-black">PROMOCIÓN</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">SOLO EN TIENDA</span></div>
-        </div>
-
-        <div class="card p-14 flex flex-col lg:flex-row items-center gap-14">
-          <div class="flex-1">
-            <p class="title hero text-cream mb-8 floaty">RELLENA TU SHAKER</p>
-            <p class="sub font-extrabold text-cream mb-6">¿Vienes con tu shaker?</p>
-            <p class="sub font-extrabold text-cream mb-10">Rellénalo directo en el mesón 💪</p>
-
-            <p class="text-3xl lg:text-4xl font-black text-yellow mb-4">
-              PROTEÍNA · ENERGÍA · RECUPERACIÓN
-            </p>
-            <p class="text-2xl text-white/80">
-              Consulta opciones y sabores disponibles.
-            </p>
-          </div>
-
-          <img
-            src="rellena.jpg"
-            alt="Promoción rellena tu shaker"
-            class="w-[420px] lg:w-[560px] rounded-3xl shadow-2xl border border-white/20"
-          />
-        </div>
-
-        <p class="mt-10 text-center text-3xl lg:text-4xl font-black text-cream cta">
-          PREGUNTA EN EL MESÓN 💬
-        </p>
-      </div>
-    </section>
-
-    <!-- 6) PROMO CUMPLEAÑOS (imagen: cumpleanos.jpg en raíz) -->
-    <section class="slide bgC">
-      <div class="w-full max-w-[1600px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">MUSCLE GRENADE</span></span>
-            <span class="chip"><span class="text-pink font-black">PROMO CUMPLEAÑOS</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">SOLO EN TIENDA</span></div>
-        </div>
-
-        <div class="card p-14 flex flex-col lg:flex-row items-center gap-14">
-          <div class="flex-1">
-            <p class="title hero text-cream mb-8 floaty">¿ESTÁS DE CUMPLEAÑOS?</p>
-            <p class="sub font-extrabold text-cream mb-6">Ven con tu carnet de identidad 🎂</p>
-            <p class="sub font-extrabold text-cream mb-10">y recibe</p>
-
-            <p class="text-5xl lg:text-6xl font-black text-yellow mb-6">
-              1 BATIDO DE PROTEÍNA GRATIS 🥤
-            </p>
-
-            <p class="text-2xl text-white/80">
-              Válido solo el día de tu cumpleaños · Sujeto a disponibilidad.
-            </p>
-          </div>
-
-          <img
-            src="cumpleanos.jpg"
-            alt="Promoción cumpleaños"
-            class="w-[420px] lg:w-[560px] rounded-3xl shadow-2xl border border-white/20"
-          />
-        </div>
-
-        <p class="mt-10 text-center text-3xl lg:text-4xl font-black text-cream cta">
-          ¡CELEBRA ENTRENANDO! 🎉💪
-        </p>
-      </div>
-    </section>
-
-    <!-- 7) CAFETERÍA -->
-    <section class="slide bgE">
-      <div class="w-full max-w-[1400px]">
-        <div class="flex justify-between items-center mb-10">
-          <div class="flex gap-3 flex-wrap">
-            <span class="chip"><span class="text-orange font-black">LA BARRA PROTEIN</span></span>
-            <span class="chip"><span class="text-mint font-black">CAFETERÍA</span></span>
-          </div>
-          <div class="chip"><span class="text-cream font-bold">RÁPIDO · RICO</span></div>
-        </div>
-
-        <div class="card p-12">
-          <p class="title text-yellow text-5xl mb-8 text-center">CAFETERÍA</p>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-2xl lg:text-3xl">
-            <div class="flex justify-between"><span class="font-semibold text-cream">Espresso</span><span class="font-black text-yellow">$2.000</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Americano</span><span class="font-black text-yellow">$2.500</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Latte</span><span class="font-black text-yellow">$2.800</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Capuchino</span><span class="font-black text-yellow">$2.900</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Mocha</span><span class="font-black text-yellow">$3.200</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Café doble</span><span class="font-black text-yellow">$3.000</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Leche vegetal</span><span class="font-black text-yellow">+$300</span></div>
-            <div class="flex justify-between"><span class="font-semibold text-cream">Extra shot</span><span class="font-black text-yellow">+$500</span></div>
-          </div>
-
-          <p class="mt-10 text-center text-2xl lg:text-3xl font-bold text-cream/90">
-            Ideal para acompañar tu día ☕
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8) RESUMEN FINAL -->
-    <section class="slide bgA">
-      <div class="w-full max-w-[1600px] text-center">
-        <p class="title hero text-cream mb-8">HOY EN MUSCLE GRENADE</p>
-
-        <div class="card p-12 text-left max-w-[1500px] mx-auto">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="p-8 rounded-3xl bg-white/5 border border-white/10">
-              <p class="title text-yellow text-3xl mb-3">OFERTA 1</p>
-              <p class="text-2xl font-extrabold text-cream">Army Labs 5 lb + Creatina Ultimate 300 g</p>
-              <p class="mt-3 text-4xl font-black text-yellow">$54.990.-</p>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Capuchino Simple</span>
+                <span class="item-desc">Café + Leche + Espuma [cite: 6]</span>
             </div>
-
-            <div class="p-8 rounded-3xl bg-white/5 border border-white/10">
-              <p class="title text-yellow text-3xl mb-3">OFERTA 2</p>
-              <p class="text-2xl font-extrabold text-cream">Barra Proteica Premium Nutrition Factory</p>
-              <p class="mt-3 text-4xl font-black text-yellow">$2.990.-</p>
-            </div>
-
-            <div class="p-8 rounded-3xl bg-white/5 border border-white/10">
-              <p class="title text-yellow text-3xl mb-3">OFERTA 3</p>
-              <p class="text-2xl font-extrabold text-cream">Colágeno + Proteína Army Labs 5 lb</p>
-              <p class="mt-3 text-4xl font-black text-yellow">$64.990.-</p>
-            </div>
-          </div>
-
-          <div class="mt-10 text-center">
-            <p class="text-3xl lg:text-4xl font-black text-cream cta">PÍDELO DIRECTO EN EL MESÓN 💬</p>
-            <p class="mt-2 text-xl text-white/70">Stock limitado · Válido solo por hoy</p>
-          </div>
+            <span class="price">$3.500</span>
         </div>
-      </div>
-    </section>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Capuccino Doble</span>
+                <span class="item-desc">2 Shots de café [cite: 8]</span>
+            </div>
+            <span class="price">$3.900</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Latte / Macchiato</span>
+                <span class="item-desc">Hasta 3 shots de café </span>
+            </div>
+            <span class="price">Desde $4.200</span>
+        </div>
+    </div>
 
-  </div>
+    <div class="category">
+        <h2>Ice Matcha</h2>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Matcha Latte Coco</span>
+                <span class="item-desc">Matcha premium + Leche de coco [cite: 35]</span>
+            </div>
+            <span class="price">$4.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Matcha Vainilla</span>
+                <span class="item-desc">Matcha + Syrup vainilla [cite: 37]</span>
+            </div>
+            <span class="price">$4.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Matcha Mango / Frutilla</span>
+                <span class="item-desc">Fruta real + Matcha [cite: 38, 39]</span>
+            </div>
+            <span class="price">$5.490</span>
+        </div>
+        <div class="divider"></div>
+        <p class="item-desc">Beneficios: Energía estable, Enfoque y Antioxidantes.</p>
+    </div>
 
-  <script>
-    const slides = document.querySelectorAll(".slide");
-    let i = 0;
+    <div class="category">
+        <h2>Ice & Frappuccino</h2>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Ice Latte / Caramel</span>
+                <span class="item-desc">Café frío + Hielo + Leche [cite: 42, 43]</span>
+            </div>
+            <span class="price">$4.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Frapuccino Original</span>
+                <span class="item-desc">Hielo frappé + Crema opcional [cite: 44]</span>
+            </div>
+            <span class="price">$4.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Frapuccino Vainilla / Caramel</span>
+                <span class="item-desc">Doble sabor + Crema [cite: 45, 47]</span>
+            </div>
+            <span class="price">$4.990</span>
+        </div>
+    </div>
 
-    // Tiempo por slide (sube a 10000–12000 si quieres más lectura)
-    const intervalMs = 9000;
+    <div class="category">
+        <h2>Super Bowls & Smoothies</h2>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Acai Bowl Especial</span>
+                <span class="item-desc">Incluye 3 toppings a elección [cite: 62, 63]</span>
+            </div>
+            <span class="price">$5.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Smoothies</span>
+                <span class="item-desc">Tropical, Berries, Frutilla o Mango [cite: 50, 51, 52, 53]</span>
+            </div>
+            <span class="price">$3.990</span>
+        </div>
+        <div class="item">
+            <div class="item-info">
+                <span class="item-name">Jugos Naturales</span>
+                <span class="item-desc">Piña, Melón, Frutilla, Detox [cite: 56, 57, 58, 59, 60]</span>
+            </div>
+            <span class="price">$2.990</span>
+        </div>
+        <div class="divider"></div>
+        <div class="item-desc">Toppings: Plátano, Frutilla, Coco, Granola[cite: 64, 65, 66, 67].</div>
+    </div>
 
-    function show(idx) {
-      slides.forEach(s => s.classList.remove("active"));
-      slides[idx].classList.add("active");
-    }
+    <div class="footer-note">
+        Extra Power: Scoop Proteína $700 • Leche Proteica $400 • Mantequilla Maní $500 [cite: 55, 68]
+    </div>
+</div>
 
-    show(i);
-    setInterval(() => {
-      i = (i + 1) % slides.length;
-      show(i);
-    }, intervalMs);
-  </script>
 </body>
 </html>
 
