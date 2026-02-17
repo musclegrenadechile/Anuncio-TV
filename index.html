@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --orange-main: #FF6600; /* Naranja atractivo */
+            --orange-main: #FF6600;
             --bg-white: #FFFFFF;
             --text-dark: #1A1A1A;
-            --gray-light: #F4F4F4;
+            --gray-light: #F9F9F9;
         }
 
         body, html {
@@ -18,94 +18,91 @@
             background-color: var(--bg-white);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
+            height: 100vh;
+            overflow: hidden; /* Importante para que no aparezcan barras laterales */
         }
 
-        /* Animación de desplazamiento para TV */
+        /* Contenedor principal que se mueve */
         .scroll-container {
-            position: absolute;
+            position: relative;
             width: 100%;
-            animation: slideMenu 35s linear infinite alternate;
+            display: flex;
+            flex-direction: column;
+            /* Ajusta el tiempo (45s) si quieres que vaya más lento o rápido */
+            animation: slideMenu 45s linear infinite alternate;
         }
 
         @keyframes slideMenu {
             0% { transform: translateY(0); }
-            15% { transform: translateY(0); }
-            85% { transform: translateY(-50%); }
-            100% { transform: translateY(-50%); }
+            10% { transform: translateY(0); }
+            90% { transform: translateY(-60%); } /* Ajustado para ver el final */
+            100% { transform: translateY(-60%); }
         }
 
         header {
-            height: 100vh;
+            height: 80vh; /* Reducido para dar espacio al menú */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: var(--bg-white);
-            border-bottom: 15px solid var(--orange-main);
+            border-bottom: 10px solid var(--orange-main);
         }
 
         header h1 { 
             font-family: 'Oswald', sans-serif; 
-            font-size: 9rem; 
+            font-size: 7rem; 
             color: var(--orange-main); 
             margin: 0; 
             text-transform: uppercase;
-            line-height: 0.9;
         }
 
         .subtitle { 
-            font-size: 2.5rem; 
+            font-size: 2rem; 
             font-weight: 900; 
             letter-spacing: 5px; 
             color: var(--text-dark); 
-            text-transform: uppercase; 
         }
 
         .menu-grid {
-            padding: 80px 8%;
+            padding: 40px 5%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            background: var(--bg-white);
+            gap: 30px;
         }
 
         .category-box {
             background: var(--gray-light);
-            padding: 50px;
-            border-radius: 30px;
-            border-top: 12px solid var(--orange-main);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-top: 8px solid var(--orange-main);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         h2 { 
             font-family: 'Oswald', sans-serif; 
-            font-size: 3.5rem; 
+            font-size: 2.8rem; 
             color: var(--orange-main); 
-            text-transform: uppercase; 
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .item { 
             display: flex; 
             justify-content: space-between; 
-            align-items: center;
-            margin-bottom: 30px; 
-            border-bottom: 2px solid #E0E0E0; 
-            padding-bottom: 15px; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #DDD; 
+            padding-bottom: 10px; 
         }
 
-        .item-name { font-size: 2rem; font-weight: 700; color: var(--text-dark); }
+        .item-name { font-size: 1.6rem; font-weight: 700; }
         .item-price { 
-            font-size: 2.2rem; 
+            font-size: 1.8rem; 
             color: var(--orange-main); 
-            font-family: 'Oswald', sans-serif; 
-            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
         }
 
-        .item-desc { display: block; font-size: 1.2rem; color: #666; font-weight: 400; }
+        .item-desc { display: block; font-size: 1rem; color: #666; }
 
         .footer-bar {
             position: fixed;
@@ -114,12 +111,10 @@
             background: var(--orange-main);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             font-weight: 900;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             z-index: 100;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
     </style>
 </head>
@@ -135,62 +130,33 @@
     <div class="menu-grid">
         <div class="category-box">
             <h2>Hot Coffee</h2>
-            <div class="item">
-                <div><span class="item-name">Espresso</span><span class="item-desc">Doble shot de grano</span></div>
-                <span class="item-price">$2.500</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Americano</span><span class="item-desc">Café de grano + Agua</span></div>
-                <span class="item-price">$2.800</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Capuchino</span><span class="item-desc">Simple / Doble shot</span></div>
-                <span class="item-price">$3.500+</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Latte / Macchiato</span><span class="item-desc">Hasta 3 shots de café</span></div>
-                <span class="item-price">$4.200+</span>
-            </div>
+            <div class="item"><div><span class="item-name">Espresso</span><span class="item-desc">Doble shot</span></div><span class="item-price">$2.500</span></div>
+            <div class="item"><div><span class="item-name">Americano</span><span class="item-desc">Café + Agua</span></div><span class="item-price">$2.800</span></div>
+            <div class="item"><div><span class="item-name">Capuchino Simple</span><span class="item-desc">Leche + Espuma</span></div><span class="item-price">$3.500</span></div>
+            <div class="item"><div><span class="item-name">Capuccino Doble</span><span class="item-desc">2 shots de café</span></div><span class="item-price">$3.900</span></div>
+            <div class="item"><div><span class="item-name">Latte</span><span class="item-desc">2 shots + leche</span></div><span class="item-price">$4.200</span></div>
         </div>
 
         <div class="category-box">
             <h2>Ice Matcha</h2>
-            <div class="item">
-                <div><span class="item-name">Matcha Latte Coco</span><span class="item-desc">Matcha + Leche de coco</span></div>
-                <span class="item-price">$4.990</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Matcha Vainilla</span><span class="item-desc">Matcha + Syrup vainilla</span></div>
-                <span class="item-price">$4.990</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Matcha Frutilla / Mango</span><span class="item-desc">Matcha + Fruta natural</span></div>
-                <span class="item-price">$5.490</span>
-            </div>
+            <div class="item"><div><span class="item-name">Matcha Latte Coco</span><span class="item-desc">Leche coco</span></div><span class="item-price">$4.990</span></div>
+            <div class="item"><div><span class="item-name">Matcha Vainilla</span><span class="item-desc">Syrup + matcha</span></div><span class="item-price">$4.990</span></div>
+            <div class="item"><div><span class="item-name">Matcha Mango</span><span class="item-desc">Fruta real</span></div><span class="item-price">$5.490</span></div>
+            <div class="item"><div><span class="item-name">Matcha Frutilla</span><span class="item-desc">Fruta real</span></div><span class="item-price">$5.490</span></div>
         </div>
 
         <div class="category-box">
-            <h2>Fríos & Frappé</h2>
-            <div class="item">
-                <div><span class="item-name">Ice Latte / Caramel</span><span class="item-desc">Café frío refrescante</span></div>
-                <span class="item-price">$4.990</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Frappuccino</span><span class="item-desc">Original / Vainilla / Caramel</span></div>
-                <span class="item-price">$4.990</span>
-            </div>
+            <h2>Frappuccinos</h2>
+            <div class="item"><div><span class="item-name">Ice Latte / Caramel</span><span class="item-desc">Café + Hielo</span></div><span class="item-price">$4.990</span></div>
+            <div class="item"><div><span class="item-name">Frappuccino</span><span class="item-desc">Crema opcional</span></div><span class="item-price">$4.990</span></div>
+            <div class="item"><div><span class="item-name">Frapu Vainilla</span><span class="item-desc">Syrup + Crema</span></div><span class="item-price">$4.990</span></div>
         </div>
 
         <div class="category-box">
-            <h2>Bowls & Smoothies</h2>
-            <div class="item">
-                <div><span class="item-name">Acai Bowl</span><span class="item-desc">Incluye 3 toppings gratis</span></div>
-                <span class="item-price">$5.990</span>
-            </div>
-            <div class="item">
-                <div><span class="item-name">Smoothies</span><span class="item-desc">Mix Tropical / Berries / Mango</span></div>
-                <span class="item-price">$3.990</span>
-            </div>
+            <h2>Super Foods</h2>
+            <div class="item"><div><span class="item-name">Acai Bowl</span><span class="item-desc">3 toppings gratis</span></div><span class="item-price">$5.990</span></div>
+            <div class="item"><div><span class="item-name">Smoothies</span><span class="item-desc">Tropical/Berries</span></div><span class="item-price">$3.990</span></div>
+            <div class="item"><div><span class="item-name">Jugos Naturales</span><span class="item-desc">Piña/Frutilla</span></div><span class="item-price">$2.990</span></div>
         </div>
     </div>
 </div>
