@@ -3,284 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Barra Protein | Menú Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <title>Menú La Barra - TV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #d4ff00; /* Color lima/eléctrico para resaltar lo fitness */
-            --bg: #0a0a0a;
-            --card-bg: rgba(25, 25, 25, 0.95);
-            --text: #ffffff;
-            --muted: #a0a0a0;
+            --orange-main: #FF6600; /* Naranja atractivo */
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --gray-light: #F4F4F4;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg);
-            background-image: radial-gradient(circle at 50% -20%, #222, #0a0a0a);
-            color: var(--text);
-            min-height: 100vh;
-            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        /* Animación de desplazamiento para TV */
+        .scroll-container {
+            position: absolute;
+            width: 100%;
+            animation: slideMenu 35s linear infinite alternate;
+        }
+
+        @keyframes slideMenu {
+            0% { transform: translateY(0); }
+            15% { transform: translateY(0); }
+            85% { transform: translateY(-50%); }
+            100% { transform: translateY(-50%); }
         }
 
         header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 50px;
+            background: var(--bg-white);
+            border-bottom: 15px solid var(--orange-main);
         }
 
-        .logo-area h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 4rem;
-            letter-spacing: -2px;
-            color: var(--accent);
+        header h1 { 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 9rem; 
+            color: var(--orange-main); 
+            margin: 0; 
             text-transform: uppercase;
-            line-height: 1;
+            line-height: 0.9;
         }
 
-        .logo-area p {
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-top: 10px;
+        .subtitle { 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            letter-spacing: 5px; 
+            color: var(--text-dark); 
+            text-transform: uppercase; 
         }
 
         .menu-grid {
+            padding: 80px 8%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: auto;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: var(--bg-white);
         }
 
-        .category {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+        .category-box {
+            background: var(--gray-light);
+            padding: 50px;
+            border-radius: 30px;
+            border-top: 12px solid var(--orange-main);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .category:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .category h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            border-left: 5px solid var(--accent);
-            padding-left: 15px;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 15px;
-        }
-
-        .item-info { flex: 1; }
-
-        .item-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-        }
-
-        .item-desc {
-            font-size: 0.85rem;
-            color: var(--muted);
-            display: block;
-            margin-top: 2px;
-        }
-
-        .price {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.3rem;
-            color: #fff;
-            margin-left: 15px;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-            margin: 15px 0;
-            opacity: 0.3;
-        }
-
-        .footer-note {
-            grid-column: 1 / -1;
+        h2 { 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 3.5rem; 
+            color: var(--orange-main); 
+            text-transform: uppercase; 
+            margin-bottom: 40px;
             text-align: center;
-            background: var(--accent);
-            color: #000;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: 800;
+        }
+
+        .item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 30px; 
+            border-bottom: 2px solid #E0E0E0; 
+            padding-bottom: 15px; 
+        }
+
+        .item-name { font-size: 2rem; font-weight: 700; color: var(--text-dark); }
+        .item-price { 
+            font-size: 2.2rem; 
+            color: var(--orange-main); 
+            font-family: 'Oswald', sans-serif; 
+            font-weight: 700;
+        }
+
+        .item-desc { display: block; font-size: 1.2rem; color: #666; font-weight: 400; }
+
+        .footer-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--orange-main);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-weight: 900;
+            font-size: 1.8rem;
+            z-index: 100;
             text-transform: uppercase;
-            margin-top: 20px;
-        }
-
-        .extra-badge {
-            display: inline-block;
-            background: #333;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            margin: 5px 5px 0 0;
-        }
-
-        @media (max-width: 768px) {
-            .logo-area h1 { font-size: 2.5rem; }
-            .menu-grid { grid-template-columns: 1fr; }
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo-area">
-        <h1>LA BARRA PROTEIN</h1>
-        <p>Fuel Your Performance</p>
-    </div>
-</header>
+<div class="scroll-container">
+    <header>
+        <p class="subtitle">BIENVENIDO A</p>
+        <h1>LA BARRA</h1>
+        <p class="subtitle" style="color: var(--orange-main);">PROTEIN BAR</p>
+    </header>
 
-<div class="menu-grid">
-    <div class="category">
-        <h2>Hot Coffee Grano</h2>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Café Espresso</span>
-                <span class="item-desc">Doble shot de energía pura [cite: 2]</span>
+    <div class="menu-grid">
+        <div class="category-box">
+            <h2>Hot Coffee</h2>
+            <div class="item">
+                <div><span class="item-name">Espresso</span><span class="item-desc">Doble shot de grano</span></div>
+                <span class="item-price">$2.500</span>
             </div>
-            <span class="price">$2.500</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Americano</span>
-                <span class="item-desc">Café + Agua [cite: 4]</span>
+            <div class="item">
+                <div><span class="item-name">Americano</span><span class="item-desc">Café de grano + Agua</span></div>
+                <span class="item-price">$2.800</span>
             </div>
-            <span class="price">$2.800</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Capuchino Simple</span>
-                <span class="item-desc">Café + Leche + Espuma [cite: 6]</span>
+            <div class="item">
+                <div><span class="item-name">Capuchino</span><span class="item-desc">Simple / Doble shot</span></div>
+                <span class="item-price">$3.500+</span>
             </div>
-            <span class="price">$3.500</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Capuccino Doble</span>
-                <span class="item-desc">2 Shots de café [cite: 8]</span>
+            <div class="item">
+                <div><span class="item-name">Latte / Macchiato</span><span class="item-desc">Hasta 3 shots de café</span></div>
+                <span class="item-price">$4.200+</span>
             </div>
-            <span class="price">$3.900</span>
         </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Latte / Macchiato</span>
-                <span class="item-desc">Hasta 3 shots de café </span>
-            </div>
-            <span class="price">Desde $4.200</span>
-        </div>
-    </div>
 
-    <div class="category">
-        <h2>Ice Matcha</h2>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Matcha Latte Coco</span>
-                <span class="item-desc">Matcha premium + Leche de coco [cite: 35]</span>
+        <div class="category-box">
+            <h2>Ice Matcha</h2>
+            <div class="item">
+                <div><span class="item-name">Matcha Latte Coco</span><span class="item-desc">Matcha + Leche de coco</span></div>
+                <span class="item-price">$4.990</span>
             </div>
-            <span class="price">$4.990</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Matcha Vainilla</span>
-                <span class="item-desc">Matcha + Syrup vainilla [cite: 37]</span>
+            <div class="item">
+                <div><span class="item-name">Matcha Vainilla</span><span class="item-desc">Matcha + Syrup vainilla</span></div>
+                <span class="item-price">$4.990</span>
             </div>
-            <span class="price">$4.990</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Matcha Mango / Frutilla</span>
-                <span class="item-desc">Fruta real + Matcha [cite: 38, 39]</span>
+            <div class="item">
+                <div><span class="item-name">Matcha Frutilla / Mango</span><span class="item-desc">Matcha + Fruta natural</span></div>
+                <span class="item-price">$5.490</span>
             </div>
-            <span class="price">$5.490</span>
         </div>
-        <div class="divider"></div>
-        <p class="item-desc">Beneficios: Energía estable, Enfoque y Antioxidantes.</p>
-    </div>
 
-    <div class="category">
-        <h2>Ice & Frappuccino</h2>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Ice Latte / Caramel</span>
-                <span class="item-desc">Café frío + Hielo + Leche [cite: 42, 43]</span>
+        <div class="category-box">
+            <h2>Fríos & Frappé</h2>
+            <div class="item">
+                <div><span class="item-name">Ice Latte / Caramel</span><span class="item-desc">Café frío refrescante</span></div>
+                <span class="item-price">$4.990</span>
             </div>
-            <span class="price">$4.990</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Frapuccino Original</span>
-                <span class="item-desc">Hielo frappé + Crema opcional [cite: 44]</span>
+            <div class="item">
+                <div><span class="item-name">Frappuccino</span><span class="item-desc">Original / Vainilla / Caramel</span></div>
+                <span class="item-price">$4.990</span>
             </div>
-            <span class="price">$4.990</span>
         </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Frapuccino Vainilla / Caramel</span>
-                <span class="item-desc">Doble sabor + Crema [cite: 45, 47]</span>
-            </div>
-            <span class="price">$4.990</span>
-        </div>
-    </div>
 
-    <div class="category">
-        <h2>Super Bowls & Smoothies</h2>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Acai Bowl Especial</span>
-                <span class="item-desc">Incluye 3 toppings a elección [cite: 62, 63]</span>
+        <div class="category-box">
+            <h2>Bowls & Smoothies</h2>
+            <div class="item">
+                <div><span class="item-name">Acai Bowl</span><span class="item-desc">Incluye 3 toppings gratis</span></div>
+                <span class="item-price">$5.990</span>
             </div>
-            <span class="price">$5.990</span>
-        </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Smoothies</span>
-                <span class="item-desc">Tropical, Berries, Frutilla o Mango [cite: 50, 51, 52, 53]</span>
+            <div class="item">
+                <div><span class="item-name">Smoothies</span><span class="item-desc">Mix Tropical / Berries / Mango</span></div>
+                <span class="item-price">$3.990</span>
             </div>
-            <span class="price">$3.990</span>
         </div>
-        <div class="item">
-            <div class="item-info">
-                <span class="item-name">Jugos Naturales</span>
-                <span class="item-desc">Piña, Melón, Frutilla, Detox [cite: 56, 57, 58, 59, 60]</span>
-            </div>
-            <span class="price">$2.990</span>
-        </div>
-        <div class="divider"></div>
-        <div class="item-desc">Toppings: Plátano, Frutilla, Coco, Granola[cite: 64, 65, 66, 67].</div>
     </div>
+</div>
 
-    <div class="footer-note">
-        Extra Power: Scoop Proteína $700 • Leche Proteica $400 • Mantequilla Maní $500 [cite: 55, 68]
-    </div>
+<div class="footer-bar">
+    EXTRA: SCOOP PROTEÍNA $700 • LECHE PROTEICA $400 • MANTEQUILLA MANÍ $500
 </div>
 
 </body>
 </html>
-
-
-
 
 
 
